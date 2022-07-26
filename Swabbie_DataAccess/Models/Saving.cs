@@ -7,7 +7,7 @@ namespace Swabbie_DataAccess.Models
     {
         [Key]
         public int Id { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime TransactionDate { get; set; }
         [Required]
         public string? Name { get; set; }
         [Required]
