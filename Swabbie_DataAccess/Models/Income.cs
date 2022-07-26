@@ -11,7 +11,7 @@ namespace Swabbie_DataAccess.Models
         [Required]
         public string? Name { get; set; }
         [Required]
-        public ExpenseCat Category { get; set; }
+        public IncomeCat Category { get; set; }
         [Required]
         public decimal Amount { get; set; }
         public string? Description { get; set; }

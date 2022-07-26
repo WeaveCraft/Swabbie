@@ -5,8 +5,10 @@ using Swabbie_Business.Repository;
 using Swabbie_Business.Repository.IRepository;
 using Swabbie_DataAccess.Data;
 using Swabbie_Server.Data;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddMudServices();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
