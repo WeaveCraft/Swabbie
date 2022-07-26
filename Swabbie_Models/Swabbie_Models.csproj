@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Swabbie_DataAccess\Swabbie_DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>
