@@ -21,4 +21,9 @@
     <ProjectReference Include="..\Swabbie_DataAccess\Swabbie_DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Transactions\Expense\" />
+    <Folder Include="wwwroot\assets\" />
+  </ItemGroup>
+
 </Project>
