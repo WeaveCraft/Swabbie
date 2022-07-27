@@ -1,17 +1,54 @@
 ﻿@page "/about"
 
-<MudText Align="Align.Center" Typo="Typo.h3" Color="Color.Primary">
-    Swabbie Project <br /> Finance and Health Tracker.
+<MudText Align="Align.Center" Typo="Typo.h3" Color="Color.Warning">
+    Swabbie Project.
 </MudText>
-<MudPaper Elevation="3" Class="my-5 py-5">
-    <MudText Align="Align.Center">
-        App is still under production.
+<MudPaper Elevation="5" Class="my-6 py-6">
+    <MudText Align="Align.Center" Typo="Typo.h4" Color="Color.Warning">
+        Expense Tracker.
     </MudText>
+    <MudText Align="Align.Center">
+        Expense, Income & Savings page should have basic CRUD operations where user can add, edit, view and delete transactions made.
+        <br />There should also be an option to add transactions that are "common". These "common transacations" could be Rent, internet bill. Basically costs that are static and the user can just click and add these transactions with one or two clicks. These can ofcourse be edited, deleted etc if need be.
+        <br />User should also be able to choose that these "common transactions" such as rent is added the 15th, 25th each month automatically becouse that's usually when rent is being paid. Or payday 15/25th each month. There is also a "confirm" button where the user can confirm these transactions have been made or they are guarnteed going to be made. Otherwise they are being "confirmed" automatically after x amount of days.
+        <br />There should be a table for confirmed "orders" or "hsitory" table and also a "order/history header" that tracks which users made which transactions with an user ID.
+        <br />The Expense & Income page have identical CRUD operations and layout.
+        <br />The Savings page will have a different layout but almost the same CRUD operations. The idea is that the user can add savings into their savings account and also save up to something. Etc a new car or new clothes. But saving up to something will eventually turn into an expense. So the savings page should help the user better understand how to save money for something. These "save for something" should have a progress bar and also see how much money needs to be saved each month to afford x item.
+    </MudText>
+    <MudPaper Elevation="3" Class="my-5 py-5">
+        <MudText Align="Align.Center" Typo="Typo.h6" Color="Color.Warning">
+            Data Tables.
+        </MudText>
+        <MudText Align="Align.Center">
+            Expense & Income - Id, Name, TransactionDate, Description, Amount(price), Category, AddedDate, TransactionType(Credit card, cash etc).
+            <br />Savings - Id, Name, TransactionDate, Description, Amount(price), Category, AddedDate. 
+            <br />OrderDetail - Id, OrderHeaderId, ExpenseId, Expense(Class), IncomeId, Income(Class), Count, Total(Price), Size, ExpenseName.
+            <br />OrderHeader - Id, UserId, OrderTotal, TransactionDate, ConfirmationDate, Status, SessionId, TransactionType, Name, PhoneNumber(?), StreetAddress(?), State(?), City(?), PostalCode(?), Email, Type(Good or Bad(?) Could be redundant or necceseary transaction.)
+        </MudText>
+    </MudPaper>
 </MudPaper>
-<MudPaper Elevation="3" Class="my-5 py-5">
-    <MudText Align="Align.Center">
-        App is still under production.
+<MudPaper Elevation="5" Class="my-6 py-6">
+    <MudText Align="Align.Center" Typo="Typo.h4" Color="Color.Warning">
+        Health Tracker.
     </MudText>
+    <MudText Align="Align.Center">
+        User can track Sleep, Water(this table could be all kinds of beverages such as coffee and water. The user can see when there's a limit of too much or too little of something), Calories(How much food, healthy and unhealthy has been consumed. Maybe even add an option to add calories consumed at the expense page that communicates with this page/table?), Exercise(steps taken, hours at a gym etc). 
+        <br />These four pages wont have the same CRUD operations due to the different types of flexibilities. Have enums for categories but have a datatable called "Type" that is similar to a category but the user can have CRUD operations over this "category".
+    </MudText>
+    <MudPaper Elevation="3" Class="my-5 py-5">
+        <MudText Align="Align.Center" Typo="Typo.h6" Color="Color.Warning">
+            Data Tables.
+        </MudText>
+        <MudText Align="Align.Center">
+            Type - Should function similar to Category but the user have the ability to manipulate it.(? just an idea not sure if this is good or not)
+            <br />Sleep(?) --In Progress--
+            <br />Water(?)
+            <br />Calories(?)
+            <br />Exercise(?)
+            <br />HistoryDetail - Id, HistoryHeaderId, ExpenseId, Expense(Class), IncomeId, Income(Class), Count, Total(Price), Size, ExpenseName.
+            <br />HistoryHeader - Id, UserId, HistoryTotal, TransactionDate, ConfirmationDate, Status, SessionId, TransactionType, Name, PhoneNumber(?), StreetAddress(?), State(?), City(?), PostalCode(?), Email, Type(Good or Bad(?) Could be redundant or necceseary transaction.)
+        </MudText>
+    </MudPaper>
 </MudPaper>
 @code {
 }

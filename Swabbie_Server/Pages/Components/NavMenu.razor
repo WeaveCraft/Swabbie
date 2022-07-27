@@ -1,16 +1,16 @@
 ﻿<MudDrawer @bind-Open="SideBarOpen" Elevation="1">
 	<MudDrawerHeader>
 		<MudAvatar Color="Color.Transparent" Size="Size.Large" Image="assets/nedladdning.png" />
-		<MudText Typo="Typo.h5" Color="Color.Primary" Style="margin-top:10px; margin-left:15px;">Swabbie</MudText>
+		<MudText Typo="Typo.h5" Color="Color.Warning" Style="margin-top:10px; margin-left:15px;">Swabbie</MudText>
 	</MudDrawerHeader>
 	<MudNavMenu>
 		<MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Filled.Home">Home</MudNavLink>
-		<MudNavGroup Title="Transactions" Icon="@Icons.Filled.DashboardCustomize" Expanded="true">
+		<MudNavGroup Title="Transactions" Icon="@Icons.Filled.DashboardCustomize" Expanded="false">
 			<MudNavLink Href="/expense" Icon="@Icons.Filled.Camera">Expense</MudNavLink>
 			<MudNavLink Href="/income" Icon="@Icons.Filled.Camera">Income</MudNavLink>
 			<MudNavLink Href="/savings" Icon="@Icons.Filled.Camera">Savings</MudNavLink>
 		</MudNavGroup>
-		<MudNavGroup Title="Health" Icon="@Icons.Filled.DashboardCustomize" Expanded="true">
+		<MudNavGroup Title="Health" Icon="@Icons.Filled.DashboardCustomize" Expanded="false">
 			<MudNavLink Href="/Sleep" Icon="@Icons.Filled.Camera">Expense</MudNavLink>
 			<MudNavLink Href="/Calories" Icon="@Icons.Filled.Camera">Income</MudNavLink>
 			<MudNavLink Href="/Water" Icon="@Icons.Filled.Camera">Savings</MudNavLink>
