@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Swabbie_Business.Repository.IRepository;
 using Swabbie_DataAccess.Data;
-using Swabbie_DataAccess.Models;
+using Swabbie_DataAccess.Transactions;
 using Swabbie_Models.DTO;
 
 namespace Swabbie_Business.Repository
@@ -64,7 +64,7 @@ namespace Swabbie_Business.Repository
                 objFromDb.CreatedDate = DateTime.UtcNow;
                 objFromDb.Amount = objDTO.Amount;
                 objFromDb.Category = objDTO.Category;
-                objFromDb.TranscationType = objDTO.TranscationType;
+                objFromDb.TransactionType = objDTO.TransactionType;
                 _db.Incomes.Update(objFromDb);
                 await _db.SaveChangesAsync();
                 return _mapper.Map<Income, IncomeDTO>(objFromDb);

@@ -14,6 +14,6 @@ namespace Swabbie_Models.DTO
         [Required]
         public decimal Amount { get; set; }
         public string? Description { get; set; }
-        public TransactionCat TranscationType { get; set; }
+        public TransactionCat TransactionType { get; set; }
     }
 }

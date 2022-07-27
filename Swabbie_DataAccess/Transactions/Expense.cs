@@ -12,7 +12,7 @@ namespace Swabbie_DataAccess.Transactions
         [Required]
         public string? Name { get; set; }
         [Required]
-        public IncomeCat Category { get; set; }
+        public ExpenseCat Category { get; set; }
         [Required]
         public decimal Amount { get; set; }
         public string? Description { get; set; }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Swabbie_DataAccess.Models;
+using Swabbie_DataAccess.Transactions;
 using Swabbie_Models.DTO;
 
 namespace Swabbie_Business.Mapper
