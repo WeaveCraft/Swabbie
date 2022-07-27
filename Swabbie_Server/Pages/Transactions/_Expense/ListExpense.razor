@@ -21,7 +21,6 @@
 
 @code {
     private IEnumerable<ExpenseDTO> Expenses { get; set; } = new List<ExpenseDTO>();
-    public bool IsLoading { get; set; }
     private int DeleteExpenseId { get; set; } = 0;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -34,26 +33,17 @@
 
     private async Task LoadExpenses()
     {
-        IsLoading = true;
-        StateHasChanged();
         Expenses = await _expenseRepository.GetAll();
-        IsLoading = false;
         StateHasChanged();
     }
 
     private void HandleDelete(int id)
     {
         DeleteExpenseId = id;
-        _jsRuntime.InvokeVoidAsync("ShowDeleteConfirmationModal");
-    }
-    private void HandleDeletee()
-    {
-        _jsRuntime.InvokeVoidAsync("ShowAddCategoryModal");
     }
 
     public async Task ConfirmDelete_Click(bool isConfirmed)
     {
-        IsLoading = true;
         if (isConfirmed && DeleteExpenseId != 0)
         {
             await Task.Delay(2000);
@@ -61,8 +51,6 @@
             ExpenseDTO expense = await _expenseRepository.Get(DeleteExpenseId);
             await _expenseRepository.Delete(DeleteExpenseId);
             await LoadExpenses();
-            await _jsRuntime.InvokeVoidAsync("HideDeleteConfirmationModal");
         }
-        IsLoading = false;
     }
 }
