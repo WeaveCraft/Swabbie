@@ -1,10 +1,9 @@
 ﻿using Swabbie_DataAccess.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Swabbie_DataAccess.Models
+namespace Swabbie_DataAccess.Transactions
 {
-    public class Expense
+    public class Income
     {
         [Key]
         public int Id { get; set; }
@@ -16,7 +15,7 @@ namespace Swabbie_DataAccess.Models
         [Required]
         public decimal Amount { get; set; }
         public string? Description { get; set; }
-        public TransactionCat TransactionType { get; set; }
+        public TransactionCat TranscationType { get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }

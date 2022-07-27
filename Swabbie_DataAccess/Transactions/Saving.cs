@@ -1,7 +1,7 @@
 ﻿using Swabbie_DataAccess.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Swabbie_DataAccess.Models
+namespace Swabbie_DataAccess.Transactions
 {
     public class Saving
     {

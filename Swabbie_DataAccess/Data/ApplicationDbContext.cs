@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Swabbie_DataAccess.Models;
+using Swabbie_DataAccess.Transactions;
 
 namespace Swabbie_DataAccess.Data
 {
