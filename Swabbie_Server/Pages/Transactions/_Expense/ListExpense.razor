@@ -1,6 +1,7 @@
 ﻿@page "/expense"
 @inject IExpenseRepository _expenseRepository
 @inject IJSRuntime _jsRuntime
+@inject IDialogService DialogService
 
 <MudTable Items="@Expenses" Hover="true" Breakpoint="Breakpoint.Sm" RightAlignSmall="true">
     <HeaderContent>
@@ -9,6 +10,15 @@
         <MudTh>Transaction Type</MudTh>
         <MudTh>Transaction Date</MudTh>
         <MudTh>Amount</MudTh>
+        <MudDialog>
+            <DialogContent>
+                Dialog Content
+            </DialogContent>
+            <DialogActions>
+                <MudButton OnClick="Cancel">Cancel</MudButton>
+                <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+            </DialogActions>
+        </MudDialog>
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Category">@context.Category</MudTd>
@@ -18,6 +28,9 @@
         <MudTd DataLabel="Price">$@context.Amount</MudTd>
     </RowTemplate>
 </MudTable>
+
+
+
 
 @code {
     private IEnumerable<ExpenseDTO> Expenses { get; set; } = new List<ExpenseDTO>();
@@ -30,6 +43,11 @@
             await LoadExpenses();
         }
     }
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
 
     private async Task LoadExpenses()
     {

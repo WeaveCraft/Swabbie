@@ -21,19 +21,23 @@
 
 @code {
     private IEnumerable<IncomeDTO> Incomes { get; set; } = new List<IncomeDTO>();
+    public bool IsLoading { get; set; }
     private int DeleteIncomeId { get; set; } = 0;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await LoadExpenses();
+            await LoadIncomes();
         }
     }
 
-    private async Task LoadExpenses()
+    private async Task LoadIncomes()
     {
+        IsLoading = true;
+        StateHasChanged();
         Incomes = await _incomeRepository.GetAll();
+        IsLoading = false;
         StateHasChanged();
     }
 
@@ -44,13 +48,14 @@
 
     public async Task ConfirmDelete_Click(bool isConfirmed)
     {
+        IsLoading = true;
         if (isConfirmed && DeleteIncomeId != 0)
         {
-            await Task.Delay(2000);
             //delete
-            IncomeDTO expense = await _incomeRepository.Get(DeleteIncomeId);
+            IncomeDTO income = await _incomeRepository.Get(DeleteIncomeId);
             await _incomeRepository.Delete(DeleteIncomeId);
-            await LoadExpenses();
+            await LoadIncomes();
         }
+        IsLoading = false;
     }
 }

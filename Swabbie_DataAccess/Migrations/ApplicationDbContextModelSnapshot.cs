@@ -22,7 +22,7 @@ namespace Swabbie_DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Swabbie_DataAccess.Models.Expense", b =>
+            modelBuilder.Entity("Swabbie_DataAccess.Transactions.Expense", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,7 +57,7 @@ namespace Swabbie_DataAccess.Migrations
                     b.ToTable("Expenses");
                 });
 
-            modelBuilder.Entity("Swabbie_DataAccess.Models.Income", b =>
+            modelBuilder.Entity("Swabbie_DataAccess.Transactions.Income", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,7 +84,7 @@ namespace Swabbie_DataAccess.Migrations
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TranscationType")
+                    b.Property<int>("TransactionType")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -92,7 +92,7 @@ namespace Swabbie_DataAccess.Migrations
                     b.ToTable("Incomes");
                 });
 
-            modelBuilder.Entity("Swabbie_DataAccess.Models.Saving", b =>
+            modelBuilder.Entity("Swabbie_DataAccess.Transactions.Saving", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
