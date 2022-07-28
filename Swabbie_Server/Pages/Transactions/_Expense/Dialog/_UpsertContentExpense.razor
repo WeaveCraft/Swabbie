@@ -19,7 +19,7 @@
                     <MudSelectItem Value="cat">@cat.ToString()</MudSelectItem>
                 }
             </MudSelect>
-            <MudDatePicker @bind-Value="Expenses.TransactionDate" Label="Date"></MudDatePicker>
+            <MudDatePicker Label="Date" @bind-bind-PickerMonth="Expenses.TransactionDate" OpenTo="OpenTo.Month" Date="@DateTime.UtcNow" DateFormat="dd.MM.yyyy" ShowWeekNumbers="true"/>
         </EditForm>
     </DialogContent>
     <DialogActions>

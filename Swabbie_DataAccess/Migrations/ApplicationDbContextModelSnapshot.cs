@@ -46,7 +46,7 @@ namespace Swabbie_DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("TransactionDate")
+                    b.Property<DateTime?>("TransactionDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("TransactionType")
@@ -81,7 +81,8 @@ namespace Swabbie_DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("TransactionDate")
+                    b.Property<DateTime?>("TransactionDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<int>("TransactionType")
