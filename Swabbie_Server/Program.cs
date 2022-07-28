@@ -6,6 +6,7 @@ using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMudServices();
+builder.Services.AddMudBlazorDialog();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
