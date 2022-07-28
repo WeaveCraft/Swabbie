@@ -1,7 +1,7 @@
 ﻿@inject IDialogService DialogService
 
 <MudButton @onclick="OpenDialog" Variant="Variant.Filled" Color="Color.Primary">
-    Add Expense
+    Add Income
 </MudButton>
 
 
@@ -11,6 +11,6 @@
     {    
         DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
 
-        DialogService.Show<Demo>("New Expense", closeOnEscapeKey);
+        DialogService.Show<_UpsertContentIncome>("New Income", closeOnEscapeKey);
     }
 }

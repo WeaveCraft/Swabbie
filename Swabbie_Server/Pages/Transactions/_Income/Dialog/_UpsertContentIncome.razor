@@ -1,0 +1,45 @@
+﻿@inject IIncomeRepository _incomeRepository
+
+<MudDialog>
+    <DialogContent>
+        <EditForm Model="Incomes" OnValidSubmit="HandleSubmit">
+            <DataAnnotationsValidator />
+            <MudTextField @bind-Value="Incomes.Name" T="string" Label="Name"></MudTextField>
+            <MudTextField @bind-Value="Incomes.Description" T="string" Label="Description"></MudTextField>
+            <MudTextField @bind-Value="Incomes.Amount" T="decimal" Label="Price"></MudTextField>
+            <MudRadioGroup Class="my-4" @bind-bind-SelectedOption="Incomes.TransactionType" T="Enum">
+                @foreach (Enum type in Enum.GetValues(typeof(TransactionCat)))
+                {
+                    <MudRadio Option="type" Color="Color.Warning">@type.ToString()</MudRadio>
+                }
+            </MudRadioGroup>
+            <MudSelect Class="my-4" @bind-bind-SelectedValues="Incomes.Category" T="Enum" Label="Category">
+                @foreach (Enum cat in Enum.GetValues(typeof(IncomeCat)))
+                {
+                    <MudSelectItem Value="cat">@cat.ToString()</MudSelectItem>
+                }
+            </MudSelect>
+            <MudDatePicker @bind-Value="Incomes.TransactionDate" Label="Date"></MudDatePicker>
+        </EditForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Success" OnClick="HandleSubmit">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+
+
+@code {
+    [CascadingParameter] MudDialogInstance? MudDialog { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    private IncomeDTO Incomes { get; set; } = new IncomeDTO();
+
+    private async Task HandleSubmit()
+    {
+        await _incomeRepository.Create(Incomes);
+        MudDialog.Close(DialogResult.Ok(true));
+    }
+}
