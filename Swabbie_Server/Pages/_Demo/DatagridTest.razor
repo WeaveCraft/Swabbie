@@ -1,0 +1,60 @@
+﻿@page "/demo"
+
+@inject IExpenseRepository _expenseRepository
+@inject IJSRuntime _jsRuntime
+@inject IDialogService DialogService
+
+@namespace MudBlazor.UnitTests.TestComponents
+<MudPopoverProvider></MudPopoverProvider>
+
+
+<MudDataGrid Elevation="5" Items="@Expenses" Filterable="true" Loading="true">
+    <Columns >
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Name)" />
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Amount)" />
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Category)" />
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.TransactionDate)" />
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Description)" />
+                    <MudSpacer />
+        <MudTextField @bind-Value="searchString" Placeholder="Search for Expenses..." Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+
+    </Columns>
+
+</MudDataGrid>
+
+@code {
+    private IEnumerable<ExpenseDTO> Expenses { get; set; } = new List<ExpenseDTO>();
+    private int DeleteExpenseId { get; set; } = 0;
+    private string searchString = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LoadExpenses();
+        }
+    }
+    private bool Search(ExpenseDTO expense)
+    {
+        if (expense.Name is not null && expense.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)
+            || expense.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    private async Task LoadExpenses()
+    {
+        Expenses = await _expenseRepository.GetAll();
+        StateHasChanged();
+    }
+
+}
+
+

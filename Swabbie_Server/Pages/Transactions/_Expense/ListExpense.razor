@@ -4,23 +4,17 @@
 @inject IDialogService DialogService
 
 <_UpsertDialogExpense />
-<MudTable Items="@Expenses" Hover="true" Breakpoint="Breakpoint.Sm" RightAlignSmall="true">
-    <HeaderContent>
 
+<MudTable Items="@Expenses" Elevation="25" Hover="true" Breakpoint="Breakpoint.Sm" RightAlignSmall="true" Filter="new Func<ExpenseDTO, bool>(Search)">
+    <HeaderContent>
         <MudTh>Category</MudTh>
         <MudTh>Name</MudTh>
         <MudTh>Transaction Type</MudTh>
         <MudTh>Transaction Date</MudTh>
         <MudTh>Amount</MudTh>
-        <MudDialog>
-            <DialogContent>
-                Dialog Content
-            </DialogContent>
-            <DialogActions>
-                <MudButton OnClick="Cancel">Cancel</MudButton>
-                <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
-            </DialogActions>
-        </MudDialog>
+        <MudSpacer />
+        <MudTextField @bind-Value="searchString" Placeholder="Search for Expenses..." Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Category">@context.Category</MudTd>
@@ -28,6 +22,10 @@
         <MudTd DataLabel="Transaction Type">@context.TransactionType</MudTd>
         <MudTd DataLabel="Transaction Date">@context.TransactionDate</MudTd>
         <MudTd DataLabel="Price">$@context.Amount</MudTd>
+        <MudTd DataLabel="">
+            <MudFab @onclick="()=>HandleDelete(context.Id)" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
+        </MudTd>
+
     </RowTemplate>
 </MudTable>
 
@@ -37,6 +35,7 @@
 @code {
     private IEnumerable<ExpenseDTO> Expenses { get; set; } = new List<ExpenseDTO>();
     private int DeleteExpenseId { get; set; } = 0;
+    private string searchString = "";
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -57,20 +56,20 @@
         StateHasChanged();
     }
 
-    private void HandleDelete(int id)
+    private bool Search(ExpenseDTO expense)
     {
-        DeleteExpenseId = id;
+        if (expense.Name is not null && expense.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)
+            || expense.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+        return false;
     }
 
-    public async Task ConfirmDelete_Click(bool isConfirmed)
+    private async Task HandleDelete(int id)
     {
-        if (isConfirmed && DeleteExpenseId != 0)
-        {
-            await Task.Delay(2000);
-            //delete
-            ExpenseDTO expense = await _expenseRepository.Get(DeleteExpenseId);
-            await _expenseRepository.Delete(DeleteExpenseId);
-            await LoadExpenses();
-        }
+        await _expenseRepository.Delete(id);
+        await LoadExpenses();
     }
+
 }

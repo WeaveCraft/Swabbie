@@ -19,7 +19,7 @@
                     <MudSelectItem Value="cat">@cat.ToString()</MudSelectItem>
                 }
             </MudSelect>
-            <MudDatePicker Label="Date" @bind-bind-PickerMonth="Expenses.TransactionDate" OpenTo="OpenTo.Month" Date="@DateTime.UtcNow" DateFormat="dd.MM.yyyy" ShowWeekNumbers="true"/>
+            <MudDatePicker Label="Date" @bind-bind-PickerMonth="Expenses.TransactionDate" OpenTo="OpenTo.Month" Date="@DateTime.UtcNow" DateFormat="dd.MM.yyyy" ShowWeekNumbers="true" />
         </EditForm>
     </DialogContent>
     <DialogActions>
@@ -36,6 +36,7 @@
     void Cancel() => MudDialog.Cancel();
 
     private ExpenseDTO Expenses { get; set; } = new ExpenseDTO();
+
 
     private async Task HandleSubmit()
     {
