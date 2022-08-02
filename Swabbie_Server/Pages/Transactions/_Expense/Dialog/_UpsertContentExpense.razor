@@ -4,9 +4,9 @@
     <DialogContent>
         <EditForm Model="Expenses" OnValidSubmit="HandleSubmit">
             <DataAnnotationsValidator />
+            <MudDatePicker Label="Date" @bind-Date="Expenses.TransactionDate" OpenTo="OpenTo.Month" ShowWeekNumbers="true" />
             <MudTextField @bind-Value="Expenses.Name" T="string" Label="Name"></MudTextField>
-            <MudTextField @bind-Value="Expenses.Description" T="string" Label="Description"></MudTextField>
-            <MudTextField @bind-Value="Expenses.Amount" T="decimal" Label="Price"></MudTextField>
+            <MudTextField @bind-Value="Expenses.Amount" T="decimal" Label="Price" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.AttachMoney"></MudTextField>
             <MudRadioGroup Class="my-4" @bind-SelectedOption="Expenses.TransactionType">
                 @foreach (TransactionCat type in Enum.GetValues(typeof(TransactionCat)))
                 {
@@ -19,7 +19,7 @@
                     <MudSelectItem Value="cat">@cat</MudSelectItem>
                 }
             </MudSelect>
-            <MudDatePicker Label="Date" @bind-Date="Expenses.TransactionDate" OpenTo="OpenTo.Month" ShowWeekNumbers="true" />
+            <MudTextField @bind-Value="Expenses.Description" T="string" Label="Description" Variant="Variant.Outlined" Lines="3"></MudTextField>
         </EditForm>
     </DialogContent>
     <DialogActions>

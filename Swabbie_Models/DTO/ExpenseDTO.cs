@@ -16,5 +16,6 @@ namespace Swabbie_Models.DTO
         public decimal Amount { get; set; }
         public string? Description { get; set; }
         public TransactionCat TransactionType { get; set; }
+        //public CultureCat CultureInfo { get; set; }
     }
 }
