@@ -4,7 +4,6 @@
 @inject IDialogService DialogService
 
 <_UpsertDialogExpense />
-
 <MudTable Items="@Expenses" Elevation="25" Hover="true" Breakpoint="Breakpoint.Sm" RightAlignSmall="true" Filter="new Func<ExpenseDTO, bool>(Search)">
     <HeaderContent>
         <MudTh>Category</MudTh>

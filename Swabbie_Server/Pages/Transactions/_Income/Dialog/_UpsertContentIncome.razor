@@ -7,19 +7,19 @@
             <MudTextField @bind-Value="Incomes.Name" T="string" Label="Name"></MudTextField>
             <MudTextField @bind-Value="Incomes.Description" T="string" Label="Description"></MudTextField>
             <MudTextField @bind-Value="Incomes.Amount" T="decimal" Label="Price"></MudTextField>
-            <MudRadioGroup Class="my-4" @bind-bind-SelectedOption="Incomes.TransactionType" T="Enum">
-                @foreach (Enum type in Enum.GetValues(typeof(TransactionCat)))
+            <MudRadioGroup Class="my-4" @bind-SelectedOption="Incomes.TransactionType">
+                @foreach (TransactionCat type in Enum.GetValues(typeof(TransactionCat)))
                 {
-                    <MudRadio Option="type" Color="Color.Warning">@type.ToString()</MudRadio>
+                    <MudRadio Option="type" Color="Color.Warning">@type</MudRadio>
                 }
             </MudRadioGroup>
-            <MudSelect Class="my-4" @bind-bind-SelectedValues="Incomes.Category" T="Enum" Label="Category">
-                @foreach (Enum cat in Enum.GetValues(typeof(IncomeCat)))
+            <MudSelect Class="my-4" @bind-Value="Incomes.Category" Label="Category">
+                @foreach (IncomeCat cat in Enum.GetValues(typeof(IncomeCat)))
                 {
-                    <MudSelectItem Value="cat">@cat.ToString()</MudSelectItem>
+                    <MudSelectItem Value="cat">@cat</MudSelectItem>
                 }
             </MudSelect>
-            <MudDatePicker @bind-Value="Incomes.TransactionDate" Label="Date"></MudDatePicker>
+            <MudDatePicker @bind-Date="Incomes.TransactionDate" Label="Date" ShowWeekNumbers="true"></MudDatePicker>
         </EditForm>
     </DialogContent>
     <DialogActions>

@@ -10,6 +10,8 @@
         <MudTh>Transaction Type</MudTh>
         <MudTh>Transaction Date</MudTh>
         <MudTh>Amount</MudTh>
+        <MudTextField @bind-Value="searchString" Placeholder="Search for Expenses..." Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Category">@context.Category</MudTd>
@@ -17,46 +19,49 @@
         <MudTd DataLabel="Transaction Type">@context.TransactionType</MudTd>
         <MudTd DataLabel="Transaction Date">@context.TransactionDate</MudTd>
         <MudTd DataLabel="Price">$@context.Amount</MudTd>
+        <MudTd DataLabel="">
+            <MudFab @onclick="()=>HandleDelete(context.Id)" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
+        </MudTd>
     </RowTemplate>
 </MudTable>
 
 @code {
     private IEnumerable<IncomeDTO> Incomes { get; set; } = new List<IncomeDTO>();
-    public bool IsLoading { get; set; }
-    private int DeleteIncomeId { get; set; } = 0;
+    private int DeleteExpenseId { get; set; } = 0;
+    private string searchString = "";
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await LoadIncomes();
+            await LoadExpenses();
         }
     }
 
-    private async Task LoadIncomes()
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    private async Task LoadExpenses()
     {
-        IsLoading = true;
-        StateHasChanged();
         Incomes = await _incomeRepository.GetAll();
-        IsLoading = false;
         StateHasChanged();
     }
 
-    private void HandleDelete(int id)
+    private bool Search(ExpenseDTO expense)
     {
-        DeleteIncomeId = id;
+        if (expense.Name is not null && expense.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)
+            || expense.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+        return false;
     }
 
-    public async Task ConfirmDelete_Click(bool isConfirmed)
+    private async Task HandleDelete(int id)
     {
-        IsLoading = true;
-        if (isConfirmed && DeleteIncomeId != 0)
-        {
-            //delete
-            IncomeDTO income = await _incomeRepository.Get(DeleteIncomeId);
-            await _incomeRepository.Delete(DeleteIncomeId);
-            await LoadIncomes();
-        }
-        IsLoading = false;
+        await _incomeRepository.Delete(id);
+        await LoadExpenses();
     }
 }
