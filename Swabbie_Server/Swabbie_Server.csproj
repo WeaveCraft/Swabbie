@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Swabbie_Business\Swabbie_Business.csproj" />
+    <ProjectReference Include="..\Swabbie_Common\Swabbie_Common.csproj" />
     <ProjectReference Include="..\Swabbie_DataAccess\Swabbie_DataAccess.csproj" />
   </ItemGroup>
 

@@ -1,5 +1,6 @@
 ﻿@page "/"
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Index> localizer
 
 <Home />
-
+<h3>@localizer["helloworld"]</h3>
 <PageTitle>Swabbie</PageTitle>
