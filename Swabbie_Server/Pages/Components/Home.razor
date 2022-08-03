@@ -1,9 +1,12 @@
-﻿<MudText Align="Align.Center" Typo="Typo.h3" Color="Color.Warning">
-    Swabbie <br /> Finance and Health Tracker.
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<Home> localizer
+
+
+<MudText Align="Align.Center" Typo="Typo.h3" Color="Color.Warning">
+    Swabbie <br /> @localizer["financeandhealth"].
 </MudText>
 <MudPaper Elevation="3" Class="my-5 py-5">
     <MudText Align="Align.Center">
-        App is still under production.
+        @localizer["comingsoon"].
     </MudText>
 </MudPaper>
 <p style="text-align:center;" >

@@ -120,4 +120,7 @@
   <data name="comingsoon" xml:space="preserve">
     <value>Coming Soon</value>
   </data>
+  <data name="financeandhealth" xml:space="preserve">
+    <value>Finance and Health Tracker</value>
+  </data>
 </root>
