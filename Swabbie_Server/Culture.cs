@@ -13,7 +13,7 @@ namespace Swabbie_Server
             IRequestCultureFeature culture = HttpContext.Features.Get<IRequestCultureFeature>();
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
-                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture((new string[] { "en-US", "es-ES" }.Where(s => s != culture.RequestCulture.Culture.Name).FirstOrDefault()))));
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture((new string[] { "en-US", "es-ES", "sv-SE" }.Where(s => s != culture.RequestCulture.Culture.Name).FirstOrDefault()))));
             return Redirect("/");
         }
     }

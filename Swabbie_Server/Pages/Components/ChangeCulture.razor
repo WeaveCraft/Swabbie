@@ -1,0 +1,12 @@
+﻿@using System.Globalization
+@inject NavigationManager nav
+
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="ConfigureCulture">Change Language</MudButton>
+
+
+@code{
+    public void ConfigureCulture()
+    {
+        nav.NavigateTo("Culture", true);
+    }
+}

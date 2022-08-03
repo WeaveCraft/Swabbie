@@ -11,7 +11,7 @@ builder.Services.AddMudBlazorDialog();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddLocalization(opt => opt.ResourcesPath = "Resources");
+builder.Services.AddLocalization(opt => opt.ResourcesPath = "Culture");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IIncomeRepository, IncomeRepository>();
@@ -31,8 +31,8 @@ if (!app.Environment.IsDevelopment())
 
 var localizeOptions = new RequestLocalizationOptions()
     .SetDefaultCulture("en-US")
-    .AddSupportedCultures("en-US", "es-ES")
-    .AddSupportedUICultures("en-US", "es-ES");
+    .AddSupportedCultures("en-US", "es-ES", "sv-SE")
+    .AddSupportedUICultures("en-US", "es-ES", "sv-SE");
 app.UseRequestLocalization(localizeOptions);
 
 app.UseHttpsRedirection();
