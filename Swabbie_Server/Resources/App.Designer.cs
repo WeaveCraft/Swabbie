@@ -61,11 +61,38 @@ namespace Swabbie_Server.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string about {
+            get {
+                return ResourceManager.GetString("about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calories.
+        /// </summary>
+        public static string calories {
+            get {
+                return ResourceManager.GetString("calories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Coming Soon..
         /// </summary>
         public static string comingsoon {
             get {
                 return ResourceManager.GetString("comingsoon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expense.
+        /// </summary>
+        public static string expense {
+            get {
+                return ResourceManager.GetString("expense", resourceCulture);
             }
         }
         
@@ -79,6 +106,15 @@ namespace Swabbie_Server.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Health.
+        /// </summary>
+        public static string health {
+            get {
+                return ResourceManager.GetString("health", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello World.
         /// </summary>
         public static string Hello_World {
@@ -88,20 +124,47 @@ namespace Swabbie_Server.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to English Text.
+        ///   Looks up a localized string similar to Income.
         /// </summary>
-        public static string typer {
+        public static string income {
             get {
-                return ResourceManager.GetString("typer", resourceCulture);
+                return ResourceManager.GetString("income", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to your new app..
+        ///   Looks up a localized string similar to Savings.
         /// </summary>
-        public static string Welcome_to_your_new_app_ {
+        public static string savings {
             get {
-                return ResourceManager.GetString("Welcome to your new app.", resourceCulture);
+                return ResourceManager.GetString("savings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sleep.
+        /// </summary>
+        public static string sleep {
+            get {
+                return ResourceManager.GetString("sleep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transactions.
+        /// </summary>
+        public static string transactions {
+            get {
+                return ResourceManager.GetString("transactions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Water.
+        /// </summary>
+        public static string water {
+            get {
+                return ResourceManager.GetString("water", resourceCulture);
             }
         }
     }

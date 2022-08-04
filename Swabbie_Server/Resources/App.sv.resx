@@ -117,16 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about" xml:space="preserve">
+    <value>Om</value>
+    <comment>NavMenu</comment>
+  </data>
+  <data name="calories" xml:space="preserve">
+    <value>Kalorier</value>
+    <comment>NavMenu</comment>
+  </data>
   <data name="comingsoon" xml:space="preserve">
     <value>Kommer Snart.</value>
+  </data>
+  <data name="expense" xml:space="preserve">
+    <value>Utgift</value>
+    <comment>NavMenu</comment>
   </data>
   <data name="financeandhealth" xml:space="preserve">
     <value>Finans och Hälso App.</value>
   </data>
+  <data name="health" xml:space="preserve">
+    <value>Hälsa</value>
+    <comment>NavMenu</comment>
+  </data>
   <data name="Hello World" xml:space="preserve">
     <value>Hej Världen!</value>
   </data>
-  <data name="typer" xml:space="preserve">
-    <value>Swedish Text</value>
+  <data name="income" xml:space="preserve">
+    <value>Inkomst</value>
+    <comment>NavMenu</comment>
+  </data>
+  <data name="savings" xml:space="preserve">
+    <value>Sparande</value>
+    <comment>NavMenu</comment>
+  </data>
+  <data name="sleep" xml:space="preserve">
+    <value>Sömn</value>
+    <comment>NavMenu</comment>
+  </data>
+  <data name="transactions" xml:space="preserve">
+    <value>Transaktioner</value>
+    <comment>NavMenu</comment>
+  </data>
+  <data name="water" xml:space="preserve">
+    <value>Vatten</value>
+    <comment>NavMenu</comment>
   </data>
 </root>

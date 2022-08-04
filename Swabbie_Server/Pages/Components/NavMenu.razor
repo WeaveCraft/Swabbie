@@ -1,4 +1,6 @@
-﻿<MudDrawer @bind-Open="SideBarOpen" Elevation="1">
+﻿@inject IStringLocalizer<App> Localizer
+
+<MudDrawer @bind-Open="SideBarOpen" Elevation="1">
 	<MudDrawerHeader>
 		<MudAvatar Color="Color.Transparent" Size="Size.Large" Image="assets/nedladdning.png" />
 		<MudText Typo="Typo.h5" Color="Color.Warning" Style="margin-top:10px; margin-left:15px;">Swabbie</MudText>
@@ -6,15 +8,15 @@
 	<MudNavMenu>
 		<MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Filled.Home">Home</MudNavLink>
 		<MudNavGroup Title="Transactions" Icon="@Icons.Filled.DashboardCustomize" Expanded="false">
-			<MudNavLink Href="/expense" Icon="@Icons.Filled.Camera">Expense</MudNavLink>
-			<MudNavLink Href="/income" Icon="@Icons.Filled.Camera">Income</MudNavLink>
-			<MudNavLink Href="/savings" Icon="@Icons.Filled.Camera">Savings</MudNavLink>
+			<MudNavLink Href="/expense" Icon="@Icons.Filled.Camera">@Localizer["expense"]</MudNavLink>
+			<MudNavLink Href="/income" Icon="@Icons.Filled.Camera">@Localizer["income"]</MudNavLink>
+			<MudNavLink Href="/savings" Icon="@Icons.Filled.Camera">@Localizer["savings"]</MudNavLink>
 		</MudNavGroup>
 		<MudNavGroup Title="Health" Icon="@Icons.Filled.DashboardCustomize" Expanded="false">
-			<MudNavLink Href="/Sleep" Icon="@Icons.Filled.Camera">Expense</MudNavLink>
-			<MudNavLink Href="/Calories" Icon="@Icons.Filled.Camera">Income</MudNavLink>
-			<MudNavLink Href="/Water" Icon="@Icons.Filled.Camera">Savings</MudNavLink>
-			<MudNavLink Href="/Exercise" Icon="@Icons.Filled.Camera">Savings</MudNavLink>
+			<MudNavLink Href="/sleep" Icon="@Icons.Filled.Camera">@Localizer["sleep"]</MudNavLink>
+			<MudNavLink Href="/calories" Icon="@Icons.Filled.Camera">@Localizer["calories"]</MudNavLink>
+			<MudNavLink Href="/water" Icon="@Icons.Filled.Camera">@Localizer["water"]</MudNavLink>
+			<MudNavLink Href="/exercise" Icon="@Icons.Filled.Camera">@Localizer["exercise"]</MudNavLink>
 		</MudNavGroup>
 		<MudNavLink Href="/about" Icon="@Icons.Filled.Storage">About</MudNavLink>
 		<MudNavLink Href="/demo" Icon="@Icons.Filled.Storage">Demo</MudNavLink>

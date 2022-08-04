@@ -117,18 +117,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about" xml:space="preserve">
+    <value>Acerca de la aplicasion </value>
+    <comment>NavMenu</comment>
+  </data>
+  <data name="calories" xml:space="preserve">
+    <value>Calorías </value>
+    <comment>NavMenu</comment>
+  </data>
   <data name="comingsoon" xml:space="preserve">
     <value>Próximamente en Breve</value>
   </data>
+  <data name="expense" xml:space="preserve">
+    <value>Gasto</value>
+    <comment>NavMenu</comment>
+  </data>
   <data name="financeandhealth" xml:space="preserve">
     <value>Rastreador de Finanzas y Salud.</value>
+  </data>
+  <data name="health" xml:space="preserve">
+    <value>Salúd</value>
+    <comment>NavMenu</comment>
   </data>
   <data name="Hello World" xml:space="preserve">
     <value>Hola Mundo (Spanish)</value>
     <comment>HOME</comment>
   </data>
-  <data name="typer" xml:space="preserve">
-    <value>Spanish Text</value>
-    <comment>HOME</comment>
+  <data name="income" xml:space="preserve">
+    <value>Ingreso </value>
+    <comment>NavMenu</comment>
+  </data>
+  <data name="savings" xml:space="preserve">
+    <value>Ahorro</value>
+    <comment>NavMenu</comment>
+  </data>
+  <data name="sleep" xml:space="preserve">
+    <value>Dormir</value>
+    <comment>NavMenu</comment>
+  </data>
+  <data name="transactions" xml:space="preserve">
+    <value>Transacciones</value>
+    <comment>NavMenu</comment>
+  </data>
+  <data name="water" xml:space="preserve">
+    <value>Agua</value>
+    <comment>NavMenu</comment>
   </data>
 </root>
