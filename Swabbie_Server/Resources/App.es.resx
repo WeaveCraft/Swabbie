@@ -118,6 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="comingsoon" xml:space="preserve">
-    <value>Coming Soon</value>
+    <value>Próximamente en Breve</value>
+  </data>
+  <data name="financeandhealth" xml:space="preserve">
+    <value>Rastreador de Finanzas y Salud.</value>
+  </data>
+  <data name="Hello World" xml:space="preserve">
+    <value>Hola Mundo (Spanish)</value>
+    <comment>HOME</comment>
+  </data>
+  <data name="typer" xml:space="preserve">
+    <value>Spanish Text</value>
+    <comment>HOME</comment>
   </data>
 </root>

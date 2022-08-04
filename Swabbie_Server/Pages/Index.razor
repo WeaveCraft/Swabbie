@@ -1,6 +1,9 @@
 ﻿@page "/"
-@inject Microsoft.Extensions.Localization.IStringLocalizer<Index> localizer
+@inject IStringLocalizer<App> Localizer
+
+<h1>@Localizer["Hello World"]</h1>
+<h2>@DateTime.Now.ToShortDateString()</h2>
+<h2>@DateTime.Now.ToLongDateString()</h2>
 
 <Home />
-<h3>@localizer["helloworld"]</h3>
 <PageTitle>Swabbie</PageTitle>

@@ -118,6 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="comingsoon" xml:space="preserve">
-    <value>Spanish</value>
+    <value>Kommer Snart.</value>
+  </data>
+  <data name="financeandhealth" xml:space="preserve">
+    <value>Finans och Hälso App.</value>
+  </data>
+  <data name="Hello World" xml:space="preserve">
+    <value>Hej Världen!</value>
+  </data>
+  <data name="typer" xml:space="preserve">
+    <value>Swedish Text</value>
   </data>
 </root>

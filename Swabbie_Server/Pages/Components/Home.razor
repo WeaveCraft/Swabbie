@@ -1,12 +1,11 @@
-﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<Home> localizer
-
+﻿@inject IStringLocalizer<App> Localizer
 
 <MudText Align="Align.Center" Typo="Typo.h3" Color="Color.Warning">
-    Swabbie <br /> @localizer["financeandhealth"].
+    Swabbie <br /> @Localizer["financeandhealth"]
 </MudText>
 <MudPaper Elevation="3" Class="my-5 py-5">
     <MudText Align="Align.Center">
-        @localizer["comingsoon"].
+        @Localizer["comingsoon"]
     </MudText>
 </MudPaper>
 <p style="text-align:center;" >
