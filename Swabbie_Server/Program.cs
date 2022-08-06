@@ -3,6 +3,7 @@ using Swabbie_Business.Repository;
 using Swabbie_Business.Repository.IRepository;
 using Swabbie_DataAccess.Data;
 using MudBlazor.Services;
+using Swabbie_WeatherForecast.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMudServices();
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IIncomeRepository, IncomeRepository>();
 builder.Services.AddScoped<IExpenseRepository, ExpenseRepository>();
+builder.Services.AddScoped<IOpenWeatherService, OpenWeatherService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

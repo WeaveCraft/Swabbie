@@ -1,0 +1,23 @@
+﻿@page "/weather"
+
+<h3>WeatherMain</h3>
+
+@if (weather != null)
+{
+    <button @onclick="() => weather = null" class="btn btn-primary mb-4 me-2">Back to search</button>
+
+    <WeatherDisplay Weather="weather" />
+}
+else
+{
+    <LocationSearch OnSelectLocation="HandleSelectLocation" />
+}
+
+@code {
+    [Inject] IOpenWeatherService OpenWeatherService { get; set; }
+
+    WeatherDTO? weather;
+
+    private async Task HandleSelectLocation(LocationDTO location) =>
+        weather = await OpenWeatherService.GetWeather(location);
+}

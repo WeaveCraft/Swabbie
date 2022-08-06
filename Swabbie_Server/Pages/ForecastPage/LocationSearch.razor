@@ -1,0 +1,36 @@
+﻿<EditForm Model="@locationSearch" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Enter a place
+            <InputText @bind-Value="locationSearch.Location" class="form-control" />
+        </label>
+    </p>
+
+    <p>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </p>
+
+</EditForm>
+
+@if (locations != null)
+{
+    <LocationSelect Locations="locations"
+                    OnSelectLocation="HandleOnSelectLocation"/>
+}
+
+@code {
+    [Inject] IOpenWeatherService OpenWeatherService { get; set; }
+    [Parameter] public EventCallback<LocationDTO> OnSelectLocation { get; set; }
+
+    LocationSearchDTO locationSearch = new();
+    IEnumerable<LocationDTO>? locations;
+
+    private async Task HandleValidSubmit() =>
+        locations = await OpenWeatherService.GetLocations(locationSearch);
+
+    private async Task HandleOnSelectLocation(LocationDTO location) =>
+        await OnSelectLocation.InvokeAsync(location);
+}
