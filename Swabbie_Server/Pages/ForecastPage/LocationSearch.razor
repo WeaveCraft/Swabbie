@@ -2,23 +2,17 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <p>
-        <label>
-            Enter a place
-            <InputText @bind-Value="locationSearch.Location" class="form-control" />
-        </label>
-    </p>
+    <MudTextField @bind-Value="ReadOnly" ReadOnly="true" Variant="Variant.Text" />
+    <MudTextField @bind-Value="locationSearch.Location" Label="City" Variant="Variant.Outlined"></MudTextField>
 
-    <p>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </p>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="HandleValidSubmit">Search</MudButton>
 
 </EditForm>
 
 @if (locations != null)
 {
     <LocationSelect Locations="locations"
-                    OnSelectLocation="HandleOnSelectLocation"/>
+                OnSelectLocation="HandleOnSelectLocation" />
 }
 
 @code {
@@ -33,4 +27,6 @@
 
     private async Task HandleOnSelectLocation(LocationDTO location) =>
         await OnSelectLocation.InvokeAsync(location);
+
+    public string ReadOnly { get; set; } = "Enter a Location";
 }

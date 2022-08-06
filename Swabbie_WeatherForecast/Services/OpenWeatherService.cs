@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Swabbie_WeatherForecast;
 using Swabbie_WeatherForecast.Models;
 using Swabbie_WeatherForecast.Models.Current;
 using Swabbie_WeatherForecast.Services;
