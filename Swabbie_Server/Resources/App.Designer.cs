@@ -79,29 +79,11 @@ namespace Swabbie_Server.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Coming Soon..
-        /// </summary>
-        public static string comingsoon {
-            get {
-                return ResourceManager.GetString("comingsoon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Expense.
         /// </summary>
         public static string expense {
             get {
                 return ResourceManager.GetString("expense", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Finance and Healther Tracker..
-        /// </summary>
-        public static string financeandhealth {
-            get {
-                return ResourceManager.GetString("financeandhealth", resourceCulture);
             }
         }
         
@@ -115,20 +97,20 @@ namespace Swabbie_Server.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello World.
-        /// </summary>
-        public static string Hello_World {
-            get {
-                return ResourceManager.GetString("Hello World", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Income.
         /// </summary>
         public static string income {
             get {
                 return ResourceManager.GetString("income", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Love You Fátima.
+        /// </summary>
+        public static string Love {
+            get {
+                return ResourceManager.GetString("Love", resourceCulture);
             }
         }
         

@@ -125,27 +125,20 @@
     <value>Calorías </value>
     <comment>NavMenu</comment>
   </data>
-  <data name="comingsoon" xml:space="preserve">
-    <value>Próximamente en Breve</value>
-  </data>
   <data name="expense" xml:space="preserve">
     <value>Gasto</value>
     <comment>NavMenu</comment>
-  </data>
-  <data name="financeandhealth" xml:space="preserve">
-    <value>Rastreador de Finanzas y Salud.</value>
   </data>
   <data name="health" xml:space="preserve">
     <value>Salúd</value>
     <comment>NavMenu</comment>
   </data>
-  <data name="Hello World" xml:space="preserve">
-    <value>Hola Mundo (Spanish)</value>
-    <comment>HOME</comment>
-  </data>
   <data name="income" xml:space="preserve">
     <value>Ingreso </value>
     <comment>NavMenu</comment>
+  </data>
+  <data name="Love" xml:space="preserve">
+    <value>Te Amo Fátima</value>
   </data>
   <data name="savings" xml:space="preserve">
     <value>Ahorro</value>

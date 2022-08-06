@@ -1,4 +1,6 @@
-﻿<EditForm Model="@locationSearch" OnValidSubmit="@HandleValidSubmit">
+﻿@inject IOpenWeatherService _openWeatherService
+
+<EditForm Model="@locationSearch" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -16,17 +18,17 @@
 }
 
 @code {
-    [Inject] IOpenWeatherService OpenWeatherService { get; set; }
+    @*[Inject] IOpenWeatherService OpenWeatherService { get; set; }*@
     [Parameter] public EventCallback<LocationDTO> OnSelectLocation { get; set; }
 
     LocationSearchDTO locationSearch = new();
     IEnumerable<LocationDTO>? locations;
 
     private async Task HandleValidSubmit() =>
-        locations = await OpenWeatherService.GetLocations(locationSearch);
+        locations = await _openWeatherService.GetLocations(locationSearch);
 
     private async Task HandleOnSelectLocation(LocationDTO location) =>
         await OnSelectLocation.InvokeAsync(location);
 
-    public string ReadOnly { get; set; } = "Enter a Location";
+    public string ReadOnly = "Enter a Location";
 }

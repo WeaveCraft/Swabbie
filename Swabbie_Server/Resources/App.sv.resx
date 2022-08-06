@@ -125,26 +125,20 @@
     <value>Kalorier</value>
     <comment>NavMenu</comment>
   </data>
-  <data name="comingsoon" xml:space="preserve">
-    <value>Kommer Snart.</value>
-  </data>
   <data name="expense" xml:space="preserve">
     <value>Utgift</value>
     <comment>NavMenu</comment>
-  </data>
-  <data name="financeandhealth" xml:space="preserve">
-    <value>Finans och Hälso App.</value>
   </data>
   <data name="health" xml:space="preserve">
     <value>Hälsa</value>
     <comment>NavMenu</comment>
   </data>
-  <data name="Hello World" xml:space="preserve">
-    <value>Hej Världen!</value>
-  </data>
   <data name="income" xml:space="preserve">
     <value>Inkomst</value>
     <comment>NavMenu</comment>
+  </data>
+  <data name="Love" xml:space="preserve">
+    <value>Älskar Dig Fátima</value>
   </data>
   <data name="savings" xml:space="preserve">
     <value>Sparande</value>
