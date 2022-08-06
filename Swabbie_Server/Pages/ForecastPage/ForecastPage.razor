@@ -1,9 +1,6 @@
-﻿@page "/weather"
-
-@if (weather != null)
+﻿@if (weather != null)
 {
-    <button @onclick="() => weather = null" class="btn btn-primary mb-4 me-2">Back to search</button>
-
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="() => weather = null">Back to Search</MudButton>
     <WeatherDisplay Weather="weather" />
 }
 else

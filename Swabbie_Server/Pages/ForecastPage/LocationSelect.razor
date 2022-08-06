@@ -1,4 +1,14 @@
-﻿<div class="card-group">
+﻿<MudCard>
+    @foreach (var location in Locations){
+    <MudCardContent>
+        <MudAvatar Rounded="true" Image="@location.countryFlagImgSrc" Size="Size.Large"/>
+        <MudText>@location.name</MudText>
+        <MudText Typo="Typo.body2">@location.state - @location.country</MudText>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OnSelectLocation.InvokeAsync(location)">Select</MudButton>
+    </MudCardContent>}
+</MudCard>
+
+<div class="card-group">
     @foreach (var location in Locations)
     {
         <div class="card">

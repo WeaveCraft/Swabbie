@@ -5,7 +5,23 @@
             @DateTime
         </div>
     }
-    <div class="card-body">
+    <MudCard Outlined="true">
+    <MudCardContent>
+        <MudImage Src="@WeatherIconImgSrc" Elevation="25" Class="rounded-lg"/>
+        <MudText>@WeatherDescription</MudText>
+        <MudText Typo="Typo.body2">@Temperature °c</MudText>
+        <MudText Typo="Typo.body2">Feels like @TemperatureFeelsLike °c</MudText>
+        <MudText Typo="Typo.body2">Max @TemperatureMax °c Min @TemperatureMin °c</MudText>
+        <MudText Typo="Typo.body2">@Humidity % humidity</MudText>
+        <MudText Typo="Typo.body2">Wind @WindSpeed meter/sec</MudText>
+    </MudCardContent>
+    <MudCardActions>
+        <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
+    </MudCardActions>
+</MudCard>
+
+
+ @*   <div class="card-body">
         <p class="mb-0">
             <img src="@WeatherIconImgSrc" height="60" />
             @WeatherDescription
@@ -25,7 +41,7 @@
         <p class="small">
             Wind @WindSpeed meter/sec
         </p>
-    </div>
+    </div>*@
 </div>
 
 @code {
