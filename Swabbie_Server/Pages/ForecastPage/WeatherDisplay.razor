@@ -16,10 +16,8 @@
 
 @foreach (var date in Weather.WeatherForecast.list.Select(l => l.dtDateTime.Date).Distinct())
 {
-    <div class="row mb-4">
-        <div class="col-md-12">
+       <MudStack Row="true">
             <h2>Weather forecast for @date.ToShortDateString()</h2>
-            <div class="row row-cols-1 row-cols-md-4 g-4">
                 @foreach (var item in Weather.WeatherForecast.list
                .Where(l => l.dtDateTime.Date == date)
                .OrderBy(l => l.dtDateTime))
@@ -36,9 +34,7 @@
                              WindSpeed="@item.wind.speed" />
                     </div>
                 }
-            </div>
-        </div>
-    </div>
+    </MudStack>
 }
 
 @code {

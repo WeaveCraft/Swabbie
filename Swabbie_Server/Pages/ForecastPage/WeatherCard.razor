@@ -1,19 +1,20 @@
-﻿<div class="card text-center h-100">
+﻿<MudCard Outlined="true">
     @if (!string.IsNullOrWhiteSpace(DateTime))
     {
         <div class="card-header">
             @DateTime
         </div>
     }
-    <MudCard Outlined="true">
     <MudCardContent>
-        <MudImage Src="@WeatherIconImgSrc" Elevation="25" Class="rounded-lg"/>
+
+        <MudImage Src="@WeatherIconImgSrc" Elevation="25" Class="rounded-lg" />
         <MudText>@WeatherDescription</MudText>
         <MudText Typo="Typo.body2">@Temperature °c</MudText>
         <MudText Typo="Typo.body2">Feels like @TemperatureFeelsLike °c</MudText>
         <MudText Typo="Typo.body2">Max @TemperatureMax °c Min @TemperatureMin °c</MudText>
         <MudText Typo="Typo.body2">@Humidity % humidity</MudText>
         <MudText Typo="Typo.body2">Wind @WindSpeed meter/sec</MudText>
+
     </MudCardContent>
     <MudCardActions>
         <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
@@ -21,28 +22,28 @@
 </MudCard>
 
 
- @*   <div class="card-body">
-        <p class="mb-0">
-            <img src="@WeatherIconImgSrc" height="60" />
-            @WeatherDescription
-        </p>
-        <p class="display-6">
-            @Temperature °c
-        </p>
-        <p class="small">
-            Feels like @TemperatureFeelsLike °c
-        </p>
-        <p class="small">
-            Max @TemperatureMax °c Min @TemperatureMin °c
-        </p>
-        <p class="small">
-            @Humidity % humidity
-        </p>
-        <p class="small">
-            Wind @WindSpeed meter/sec
-        </p>
+
+@*   <div class="card-body">
+    <p class="mb-0">
+    <img src="@WeatherIconImgSrc" height="60" />
+    @WeatherDescription
+    </p>
+    <p class="display-6">
+    @Temperature °c
+    </p>
+    <p class="small">
+    Feels like @TemperatureFeelsLike °c
+    </p>
+    <p class="small">
+    Max @TemperatureMax °c Min @TemperatureMin °c
+    </p>
+    <p class="small">
+    @Humidity % humidity
+    </p>
+    <p class="small">
+    Wind @WindSpeed meter/sec
+    </p>
     </div>*@
-</div>
 
 @code {
     [Parameter] public string? DateTime { get; set; }

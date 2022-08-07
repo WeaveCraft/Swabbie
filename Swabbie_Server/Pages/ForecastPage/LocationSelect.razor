@@ -1,11 +1,19 @@
 ﻿<MudCard>
-    @foreach (var location in Locations){
-    <MudCardContent>
-        <MudAvatar Rounded="true" Image="@location.countryFlagImgSrc" Size="Size.Large"/>
-        <MudText>@location.name</MudText>
-        <MudText Typo="Typo.body2">@location.state - @location.country</MudText>
-        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OnSelectLocation.InvokeAsync(location)">Select</MudButton>
-    </MudCardContent>}
+    <MudStack Row="true">
+    @foreach (var location in Locations)
+    {
+        <MudStack Row="true">
+
+            <MudCardContent>
+                <MudAvatar Rounded="true" Image="@location.countryFlagImgSrc" Size="Size.Large" />
+                <MudText>@location.name</MudText>
+                <MudText Typo="Typo.body2">@location.state - @location.country</MudText>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OnSelectLocation.InvokeAsync(location)">Select</MudButton>
+            </MudCardContent>
+        </MudStack>
+
+    }
+    </MudStack>
 </MudCard>
 
 @code {
