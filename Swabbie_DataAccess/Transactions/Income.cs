@@ -18,6 +18,7 @@ namespace Swabbie_DataAccess.Transactions
         public decimal Amount { get; set; }
         public string? Description { get; set; }
         public TransactionCat TransactionType { get; set; }
+        public CurrencyCat CurrencyType { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
     }
 }

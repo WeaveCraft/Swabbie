@@ -129,6 +129,12 @@
     <value>Expense</value>
     <comment>NavMenu</comment>
   </data>
+  <data name="h1" xml:space="preserve">
+    <value>aid. Or payday 15/25th each month. There is also a "confirm" button where the user can confirm these transactions have been made or they are guarnteed going to be made. Otherwise they are being "confirmed" automatically after x amount of days.
+There should be a table for confirmed "orders" or "hsitory" table and also a "order/history header" that tracks which users made which transactions with an user ID.
+The Expense &amp; Income page have identical CRUD operations and layout.
+The Savings page will have a different layout but almost the same CRUD operations. The idea is that the user can add savings into their savings account and also save up to something. Etc a new car or new clothes. But saving up to something will eventually turn into an expense. So the savings page should help the user better understand how to save money for something. These "save for something" should have a progress bar and also se</value>
+  </data>
   <data name="health" xml:space="preserve">
     <value>Health</value>
     <comment>NavMenu</comment>

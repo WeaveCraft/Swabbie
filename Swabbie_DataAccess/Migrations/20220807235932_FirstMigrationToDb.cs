@@ -21,6 +21,7 @@ namespace Swabbie_DataAccess.Migrations
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TransactionType = table.Column<int>(type: "int", nullable: false),
+                    CurrencyType = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -40,6 +41,7 @@ namespace Swabbie_DataAccess.Migrations
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TransactionType = table.Column<int>(type: "int", nullable: false),
+                    CurrencyType = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

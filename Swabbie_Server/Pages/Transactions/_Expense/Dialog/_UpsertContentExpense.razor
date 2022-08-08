@@ -6,7 +6,13 @@
             <DataAnnotationsValidator />
             <MudDatePicker Label="Date" @bind-Date="Expenses.TransactionDate" OpenTo="OpenTo.Month" ShowWeekNumbers="true" />
             <MudTextField @bind-Value="Expenses.Name" T="string" Label="Name"></MudTextField>
-            <MudTextField @bind-Value="Expenses.Amount" T="decimal" Label="Price" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.AttachMoney"></MudTextField>
+            <MudTextField @bind-Value="Expenses.Amount" T="decimal" Label="Price" Adornment="Adornment.Start"></MudTextField>
+            <MudRadioGroup Class="my-4" @bind-SelectedOption="Expenses.CurrencyType">
+                @foreach (CurrencyCat currency in Enum.GetValues(typeof(CurrencyCat)))
+                {
+                    <MudRadio Option="currency" Color="Color.Warning">@currency</MudRadio>
+                }
+            </MudRadioGroup>
             <MudRadioGroup Class="my-4" @bind-SelectedOption="Expenses.TransactionType">
                 @foreach (TransactionCat type in Enum.GetValues(typeof(TransactionCat)))
                 {

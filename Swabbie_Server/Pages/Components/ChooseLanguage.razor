@@ -3,16 +3,16 @@
 
 @if (cultures != null)
 {
-    <MudSelect Dense="true" Class="my-1" AnchorOrigin="Origin.BottomCenter" @bind-Value="selectedCulture" SelectedItemChanged="RequestCultureChange">
+    @*<MudSelect Dense="true" Class="my-1" AnchorOrigin="Origin.BottomCenter" @bind-Value="selectedCulture">
         @foreach (var culture in cultures)
         {
             <MudSelectItem Value="culture.Key">@culture.Value</MudSelectItem>
         }
-    </MudSelect>
+    </MudSelect>*@
 
 
 
-    @* <form class="form-inline">
+     <form class="form-inline">
         <select class="form-control mr-2" @bind="selectedCulture">
         <option>Select...</option>
         @foreach (var culture in cultures)
@@ -21,7 +21,7 @@
         }
         </select>
         <button class="btn btn-outline-primary" @onclick="RequestCultureChange">Change</button>
-        </form>*@
+        </form>
 }
 
 @code {

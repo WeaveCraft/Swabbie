@@ -10,6 +10,7 @@
         <MudTh>Transaction Type</MudTh>
         <MudTh>Transaction Date</MudTh>
         <MudTh>Amount</MudTh>
+        <MudTh>Currency Type</MudTh>
         <MudTextField @bind-Value="searchString" Placeholder="Search for Expenses..." Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
 
     </HeaderContent>
@@ -18,7 +19,8 @@
         <MudTd DataLabel="Name">@context.Name</MudTd>
         <MudTd DataLabel="Transaction Type">@context.TransactionType</MudTd>
         <MudTd DataLabel="Transaction Date">@context.TransactionDate</MudTd>
-        <MudTd DataLabel="Price">$@context.Amount</MudTd>
+        <MudTd DataLabel="Price">@context.Amount</MudTd>
+        <MudTd DataLabel="Currency Type">@context.CurrencyType</MudTd>
         <MudTd DataLabel="">
             <MudFab @onclick="()=>HandleDelete(context.Id)" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
         </MudTd>

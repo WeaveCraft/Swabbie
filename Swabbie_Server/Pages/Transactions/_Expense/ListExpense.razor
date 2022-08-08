@@ -3,33 +3,22 @@
 @inject IJSRuntime _jsRuntime
 @inject IDialogService DialogService
 
-<_UpsertDialogExpense />
-<MudTable Items="@Expenses" Elevation="25" Hover="true" Breakpoint="Breakpoint.Sm" RightAlignSmall="true" Filter="new Func<ExpenseDTO, bool>(Search)">
-    <HeaderContent>
-        <MudTh>Category</MudTh>
-        <MudTh>Name</MudTh>
-        <MudTh>Transaction Type</MudTh>
-        <MudTh>Transaction Date</MudTh>
-        <MudTh>Amount</MudTh>
-        <MudSpacer />
-        <MudTextField @bind-Value="searchString" Placeholder="Search for Expenses..." Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
-
-    </HeaderContent>
-    <RowTemplate>
-        <MudTd DataLabel="Category">@context.Category</MudTd>
-        <MudTd DataLabel="Name">@context.Name</MudTd>
-        <MudTd DataLabel="Transaction Type">@context.TransactionType</MudTd>
-        <MudTd DataLabel="Transaction Date">@context.TransactionDate</MudTd>
-        <MudTd DataLabel="Price">$@context.Amount</MudTd>
-        <MudTd DataLabel="">
-            <MudFab @onclick="()=>HandleDelete(context.Id)" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
-        </MudTd>
-
-    </RowTemplate>
-</MudTable>
+<MudPopoverProvider></MudPopoverProvider>
 
 
+<MudDataGrid Elevation="5" Items="@Expenses" Filterable="true" Loading="false">
+    <Columns >
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Name)" />
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Amount)" />
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.CurrencyType)" />
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Category)" />
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.TransactionDate)" />
+                    <MudSpacer />
+        <MudTextField @bind-Value="searchString" Placeholder="Search for Expense..." Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
 
+    </Columns>
+
+</MudDataGrid>
 
 @code {
     private IEnumerable<ExpenseDTO> Expenses { get; set; } = new List<ExpenseDTO>();
@@ -43,6 +32,15 @@
             await LoadExpenses();
         }
     }
+    private bool Search(ExpenseDTO expense)
+    {
+        if (expense.Name is not null && expense.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)
+            || expense.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+        return false;
+    }
 
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
@@ -55,16 +53,6 @@
         StateHasChanged();
     }
 
-    private bool Search(ExpenseDTO expense)
-    {
-        if (expense.Name is not null && expense.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)
-            || expense.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-        {
-            return true;
-        }
-        return false;
-    }
-
     private async Task HandleDelete(int id)
     {
         await _expenseRepository.Delete(id);
@@ -72,3 +60,30 @@
     }
 
 }
+@*
+<_UpsertDialogExpense />
+<MudTable Items="@Expenses" Elevation="25" Hover="true" Breakpoint="Breakpoint.Sm" RightAlignSmall="true" Filter="new Func<ExpenseDTO, bool>(Search)">
+    <HeaderContent>
+        <MudTh>Category</MudTh>
+        <MudTh>Name</MudTh>
+        <MudTh>Transaction Type</MudTh>
+        <MudTh>Transaction Date</MudTh>
+        <MudTh>Amount</MudTh>
+        <MudTh>Currency Type</MudTh>
+        <MudSpacer />
+        <MudTextField @bind-Value="searchString" Placeholder="Search for Expenses..." Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Category">@context.Category</MudTd>
+        <MudTd DataLabel="Name">@context.Name</MudTd>
+        <MudTd DataLabel="Transaction Type">@context.TransactionType</MudTd>
+        <MudTd DataLabel="Transaction Date">@context.TransactionDate</MudTd>
+        <MudTd DataLabel="Price">@context.Amount</MudTd>
+        <MudTd DataLabel="Currency Type">@context.CurrencyType</MudTd>
+        <MudTd DataLabel="">
+            <MudFab @onclick="()=>HandleDelete(context.Id)" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
+        </MudTd>
+
+    </RowTemplate>
+</MudTable>*@

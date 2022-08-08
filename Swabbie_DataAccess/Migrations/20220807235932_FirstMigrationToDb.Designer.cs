@@ -12,7 +12,7 @@ using Swabbie_DataAccess.Data;
 namespace Swabbie_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220728224220_FirstMigrationToDb")]
+    [Migration("20220807235932_FirstMigrationToDb")]
     partial class FirstMigrationToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,9 @@ namespace Swabbie_DataAccess.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("CurrencyType")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -75,6 +78,9 @@ namespace Swabbie_DataAccess.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("CurrencyType")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");

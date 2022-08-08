@@ -88,6 +88,18 @@ namespace Swabbie_Server.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to aid. Or payday 15/25th each month. There is also a &quot;confirm&quot; button where the user can confirm these transactions have been made or they are guarnteed going to be made. Otherwise they are being &quot;confirmed&quot; automatically after x amount of days.
+        ///There should be a table for confirmed &quot;orders&quot; or &quot;hsitory&quot; table and also a &quot;order/history header&quot; that tracks which users made which transactions with an user ID.
+        ///The Expense &amp; Income page have identical CRUD operations and layout.
+        ///The Savings page will have a di [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string h1 {
+            get {
+                return ResourceManager.GetString("h1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Health.
         /// </summary>
         public static string health {

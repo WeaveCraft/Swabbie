@@ -7,6 +7,12 @@
             <MudTextField @bind-Value="Incomes.Name" T="string" Label="Name"></MudTextField>
             <MudTextField @bind-Value="Incomes.Description" T="string" Label="Description"></MudTextField>
             <MudTextField @bind-Value="Incomes.Amount" T="decimal" Label="Price"></MudTextField>
+             <MudSelect Class="my-4" @bind-Value="Incomes.CurrencyType" Label="Category">
+                @foreach (CurrencyCat currency in Enum.GetValues(typeof(CurrencyCat)))
+                {
+                    <MudSelectItem Value="currency">@currency</MudSelectItem>
+                }
+            </MudSelect>
             <MudRadioGroup Class="my-4" @bind-SelectedOption="Incomes.TransactionType">
                 @foreach (TransactionCat type in Enum.GetValues(typeof(TransactionCat)))
                 {
