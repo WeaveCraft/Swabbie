@@ -1,4 +1,4 @@
-﻿using Swabbie_Models.DTO;
+﻿using Swabbie_Models.DTO.Transactions;
 
 namespace Swabbie_Business.Repository.IRepository
 {

@@ -3,7 +3,7 @@ using Swabbie_Business.Repository;
 using Swabbie_Business.Repository.IRepository;
 using Swabbie_DataAccess.Data;
 using MudBlazor.Services;
-using Swabbie_WeatherForecast.Services;
+using Swabbie_Business.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMudServices();

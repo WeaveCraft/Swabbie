@@ -1,4 +1,6 @@
-﻿namespace Swabbie_WeatherForecast.Models
+﻿using Swabbie_DataAccess.Forecasts;
+
+namespace Swabbie_Models.DTO.Forecasts
 {
     public class LocationDTO
     {

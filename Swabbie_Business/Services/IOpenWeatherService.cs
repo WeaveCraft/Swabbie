@@ -1,7 +1,7 @@
-﻿using Swabbie_WeatherForecast.Models;
-using Swabbie_WeatherForecast.Models.Current;
+﻿using Swabbie_Models.DTO.Forecasts;
+using Swabbie_Models.DTO.Forecasts.Current;
 
-namespace Swabbie_WeatherForecast.Services
+namespace Swabbie_Business.Services
 {
     public interface IOpenWeatherService
     {

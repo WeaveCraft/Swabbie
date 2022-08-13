@@ -2,7 +2,7 @@
 using Swabbie_DataAccess.Transactions;
 using Swabbie_DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
-using Swabbie_Models.DTO;
+using Swabbie_Models.DTO.Transactions;
 using Swabbie_Business.Repository.IRepository;
 
 namespace Swabbie_Business.Repository

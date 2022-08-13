@@ -137,9 +137,6 @@
     <value>Inkomst</value>
     <comment>NavMenu</comment>
   </data>
-  <data name="Love" xml:space="preserve">
-    <value>Älskar Dig Fátima</value>
-  </data>
   <data name="savings" xml:space="preserve">
     <value>Sparande</value>
     <comment>NavMenu</comment>

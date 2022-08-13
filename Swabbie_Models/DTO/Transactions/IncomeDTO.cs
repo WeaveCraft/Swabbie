@@ -1,7 +1,7 @@
 ﻿using Swabbie_DataAccess.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Swabbie_Models.DTO
+namespace Swabbie_Models.DTO.Transactions
 {
     public class IncomeDTO
     {

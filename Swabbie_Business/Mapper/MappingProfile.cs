@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Swabbie_DataAccess.Transactions;
-using Swabbie_Models.DTO;
+using Swabbie_Models.DTO.Transactions;
 
 namespace Swabbie_Business.Mapper
 {

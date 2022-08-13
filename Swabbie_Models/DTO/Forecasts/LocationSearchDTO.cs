@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Swabbie_WeatherForecast.Models
+namespace Swabbie_Models.DTO.Forecasts
 {
     public class LocationSearchDTO
     {

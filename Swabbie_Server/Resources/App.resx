@@ -143,9 +143,6 @@ The Savings page will have a different layout but almost the same CRUD operation
     <value>Income</value>
     <comment>NavMenu</comment>
   </data>
-  <data name="Love" xml:space="preserve">
-    <value>Love You Fátima</value>
-  </data>
   <data name="savings" xml:space="preserve">
     <value>Savings</value>
     <comment>NavMenu</comment>

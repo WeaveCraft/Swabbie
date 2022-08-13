@@ -1,4 +1,4 @@
-﻿namespace Swabbie_WeatherForecast.Services
+﻿namespace Swabbie_Business.Services
 {
     public class WeatherCodeHelper
     {

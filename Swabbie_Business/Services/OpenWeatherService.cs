@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Swabbie_WeatherForecast.Models;
-using Swabbie_WeatherForecast.Models.Current;
-using Swabbie_WeatherForecast.Services;
+using Swabbie_Business.Services;
+using Swabbie_Models.DTO.Forecasts;
+using Swabbie_Models.DTO.Forecasts.Current;
 
 public class OpenWeatherService : IOpenWeatherService
 {

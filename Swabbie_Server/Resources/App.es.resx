@@ -137,9 +137,6 @@
     <value>Ingreso </value>
     <comment>NavMenu</comment>
   </data>
-  <data name="Love" xml:space="preserve">
-    <value>Te Amo Fátima</value>
-  </data>
   <data name="savings" xml:space="preserve">
     <value>Ahorro</value>
     <comment>NavMenu</comment>

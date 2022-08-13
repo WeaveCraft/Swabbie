@@ -118,15 +118,6 @@ namespace Swabbie_Server.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Love You Fátima.
-        /// </summary>
-        public static string Love {
-            get {
-                return ResourceManager.GetString("Love", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Savings.
         /// </summary>
         public static string savings {

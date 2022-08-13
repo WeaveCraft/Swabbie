@@ -1,4 +1,4 @@
-﻿namespace Swabbie_WeatherForecast.Models
+﻿namespace Swabbie_Models.DTO.Forecasts.Current
 {
     public class CurrentWeatherDTO
     {

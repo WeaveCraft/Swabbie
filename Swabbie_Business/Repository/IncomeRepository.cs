@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Swabbie_Business.Repository.IRepository;
 using Swabbie_DataAccess.Data;
 using Swabbie_DataAccess.Transactions;
-using Swabbie_Models.DTO;
+using Swabbie_Models.DTO.Transactions;
 
 namespace Swabbie_Business.Repository
 {
