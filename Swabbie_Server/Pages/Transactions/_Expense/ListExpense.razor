@@ -23,7 +23,6 @@
                 <MudDatePicker @bind-Date="context.Item.TransactionDate" ShowWeekNumbers="true" />
             </EditTemplate>
         </Column>
-        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Name)" />
         <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Amount)" />
         <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.CurrencyType)">
             <EditTemplate>
@@ -59,7 +58,7 @@
         <Column T="ExpenseDTO" Hidden="@(_isCellEditMode || _readOnly || _editTriggerRowClick)" CellClass="d-flex justify-end">
             <CellTemplate>
                 <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@context.Actions.StartEditingItem" />
-            <MudFab @onclick="()=>HandleDelete(context.Item.Id)" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
+            <MudIconButton @onclick="()=>HandleDelete(context.Item.Id)" Color="Color.Secondary" Size="Size.Small" Icon="@Icons.Outlined.Delete" />
 
             </CellTemplate>
         </Column>

@@ -8,10 +8,6 @@
             <DataAnnotationsValidator />
             <MudCard>
                 <MudCardContent>
-                    <MudTextField @bind-Value="Incomes.Name" T="string" Label="Name"
-                    For="@(()  => Incomes.Name )" HelperText="There must be a name" 
-                    Required="true" RequiredError="Name is required!"
-                    ></MudTextField>
                     <MudTextField @bind-Value="Incomes.Description" T="string" Label="Description"></MudTextField>
                     <MudTextField @bind-Value="Incomes.Amount" T="decimal" Label="Price"></MudTextField>
                     <MudSelect Class="my-4" @bind-Value="Incomes.CurrencyType" Label="Category">

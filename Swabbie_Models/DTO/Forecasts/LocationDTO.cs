@@ -1,6 +1,4 @@
-﻿using Swabbie_DataAccess.Forecasts;
-
-namespace Swabbie_Models.DTO.Forecasts
+﻿namespace Swabbie_Models.DTO.Forecasts
 {
     public class LocationDTO
     {

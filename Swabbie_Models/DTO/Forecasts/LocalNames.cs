@@ -1,4 +1,4 @@
-﻿namespace Swabbie_DataAccess.Forecasts
+﻿namespace Swabbie_Models.DTO.Forecasts
 {
     public class LocalNames
     {

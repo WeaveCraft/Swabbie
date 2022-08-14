@@ -5,7 +5,6 @@
         <EditForm Model="Expenses" OnValidSubmit="HandleSubmit">
             <DataAnnotationsValidator />
             <MudDatePicker Label="Date" @bind-Date="Expenses.TransactionDate" OpenTo="OpenTo.Month" ShowWeekNumbers="true" />
-            <MudTextField @bind-Value="Expenses.Name" T="string" Label="Name"></MudTextField>
             <MudTextField @bind-Value="Expenses.Amount" T="decimal" Label="Price" Adornment="Adornment.Start"></MudTextField>
             <MudRadioGroup Class="my-4" @bind-SelectedOption="Expenses.CurrencyType">
                 @foreach (CurrencyCat currency in Enum.GetValues(typeof(CurrencyCat)))

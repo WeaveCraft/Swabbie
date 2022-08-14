@@ -13,7 +13,6 @@
                 <MudDatePicker @bind-Date="context.Item.TransactionDate" ShowWeekNumbers="true" />
             </EditTemplate>
         </Column>
-        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Name)" />
         <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Amount)" />
         <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.CurrencyType)">
             <EditTemplate>

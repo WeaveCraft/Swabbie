@@ -58,7 +58,6 @@ namespace Swabbie_Business.Repository
             var objFromDb = await _db.Incomes.FirstOrDefaultAsync(u => u.Id == objDTO.Id);
             if (objFromDb != null)
             {
-                objFromDb.Name = objDTO.Name;
                 objFromDb.Description = objDTO.Description;
                 objFromDb.TransactionDate = objDTO.TransactionDate;
                 objFromDb.CreatedDate = DateTime.UtcNow;
