@@ -1,42 +1,77 @@
-﻿@page "/b"
+﻿@page "/he"
+@using Swabbie_DataAccess.Transactions
+@inject IExpenseRepository _expenseRepository
 
-@namespace MudBlazor.UnitTests.TestComponents
+<_UpsertDialogExpense />
+<MudDataGrid T="ExpenseDTO" Items="@Expenses" ReadOnly="@_readOnly" EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
+             Bordered="true" Dense="true" EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)"
+             StartedEditingItem="@StartedEditingItem" CancelledEditingItem="@CancelledEditingItem" CommittedItemChanges="@CommittedItemChanges">
 
-<MudDataGrid Items="@_items">
     <Columns>
-        <Column T="Item" Field="Name" CellStyleFunc="@_cellStyleFunc" />
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Name)" />
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Amount)" />
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.CurrencyType)">
+            <EditTemplate>
+                <MudRadioGroup Class="my-4" @bind-SelectedOption="context.Item.CurrencyType">
+                    @foreach (CurrencyCat currency in Enum.GetValues(typeof(CurrencyCat)))
+                    {
+                        <MudRadio Option="currency" Color="Color.Warning">@currency</MudRadio>
+                    }
+                </MudRadioGroup>
+            </EditTemplate>
+        </Column>
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Category)" />
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.TransactionDate)" />
+
+        <Column T="ExpenseDTO" Hidden="@(_isCellEditMode || _readOnly || _editTriggerRowClick)" CellClass="d-flex justify-end">
+            <CellTemplate>
+                <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@context.Actions.StartEditingItem" />
+            </CellTemplate>
+        </Column>
     </Columns>
 </MudDataGrid>
 
+<div class="d-flex flex-wrap mt-4">
+    <MudSwitch @bind-Checked="@_readOnly" Color="Color.Primary">Read Only</MudSwitch>
+    <div class="d-flex justify-start align-center">
+        <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Form</p>
+        <MudSwitch @bind-Checked="@_isCellEditMode">Cell</MudSwitch>
+    </div>
+    <div class="d-flex justify-start align-center">
+        <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Manual</p>
+        <MudSwitch @bind-Checked="@_editTriggerRowClick">On Row Click</MudSwitch>
+    </div>
+</div>
+
+
+
 @code {
-    private IEnumerable<Item> _items = new List<Item>()
+    [Parameter]
+    public int Id { get; set; }
+    private IEnumerable<ExpenseDTO> Expenses = new List<ExpenseDTO>();
+    private ExpenseDTO Expense = new ExpenseDTO();
+    private bool _readOnly;
+    private bool _isCellEditMode;
+    private bool _editTriggerRowClick;
+    private List<string> _events = new();
+
+    protected override async Task OnInitializedAsync()
     {
-        new Item("A"), 
-        new Item("B"), 
-        new Item("C")
-    };
-
-    // style the cells according to the element's physical classification and the molar mass.
-    private Func<Item, string> _cellStyleFunc => x =>
-    {
-        if (x.Name == "B")
-            return "background-color:#E5BDE5";
-
-        if (x.Name == "C")
-            return "font-weight:bold";
-
-        return "";
-    };
-
-    public class Item
-    {
-        public string Name { get; set; }
-
-        public Item(string name)
-        {
-            Name = name;
-        }
+        Expenses = await _expenseRepository.GetAll();
     }
 
-}
+    void StartedEditingItem(ExpenseDTO item)
+    {
+        _expenseRepository.Update(item);
+    }
 
+    void CancelledEditingItem(ExpenseDTO item)
+    {
+        _expenseRepository.Update(item);
+    }
+
+    void CommittedItemChanges(ExpenseDTO item)
+    {
+        _expenseRepository.Update(item);
+    }
+}

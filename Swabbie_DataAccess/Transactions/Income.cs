@@ -10,7 +10,7 @@ namespace Swabbie_DataAccess.Transactions
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         [Required]
         public DateTime? TransactionDate { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please Enter Name")]
         public string? Name { get; set; }
         [Required]
         public IncomeCat Category { get; set; }

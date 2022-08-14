@@ -1,31 +1,40 @@
-﻿@inject IIncomeRepository _incomeRepository
+﻿@using System.ComponentModel.DataAnnotations
+@inject IIncomeRepository _incomeRepository
+
 
 <MudDialog>
     <DialogContent>
         <EditForm Model="Incomes" OnValidSubmit="HandleSubmit">
             <DataAnnotationsValidator />
-            <MudTextField @bind-Value="Incomes.Name" T="string" Label="Name"></MudTextField>
-            <MudTextField @bind-Value="Incomes.Description" T="string" Label="Description"></MudTextField>
-            <MudTextField @bind-Value="Incomes.Amount" T="decimal" Label="Price"></MudTextField>
-             <MudSelect Class="my-4" @bind-Value="Incomes.CurrencyType" Label="Category">
-                @foreach (CurrencyCat currency in Enum.GetValues(typeof(CurrencyCat)))
-                {
-                    <MudSelectItem Value="currency">@currency</MudSelectItem>
-                }
-            </MudSelect>
-            <MudRadioGroup Class="my-4" @bind-SelectedOption="Incomes.TransactionType">
-                @foreach (TransactionCat type in Enum.GetValues(typeof(TransactionCat)))
-                {
-                    <MudRadio Option="type" Color="Color.Warning">@type</MudRadio>
-                }
-            </MudRadioGroup>
-            <MudSelect Class="my-4" @bind-Value="Incomes.Category" Label="Category">
-                @foreach (IncomeCat cat in Enum.GetValues(typeof(IncomeCat)))
-                {
-                    <MudSelectItem Value="cat">@cat</MudSelectItem>
-                }
-            </MudSelect>
-            <MudDatePicker @bind-Date="Incomes.TransactionDate" Label="Date" ShowWeekNumbers="true"></MudDatePicker>
+            <MudCard>
+                <MudCardContent>
+                    <MudTextField @bind-Value="Incomes.Name" T="string" Label="Name"
+                    For="@(()  => Incomes.Name )" HelperText="There must be a name" 
+                    Required="true" RequiredError="Name is required!"
+                    ></MudTextField>
+                    <MudTextField @bind-Value="Incomes.Description" T="string" Label="Description"></MudTextField>
+                    <MudTextField @bind-Value="Incomes.Amount" T="decimal" Label="Price"></MudTextField>
+                    <MudSelect Class="my-4" @bind-Value="Incomes.CurrencyType" Label="Category">
+                        @foreach (CurrencyCat currency in Enum.GetValues(typeof(CurrencyCat)))
+                        {
+                            <MudSelectItem Value="currency">@currency</MudSelectItem>
+                        }
+                    </MudSelect>
+                    <MudRadioGroup Class="my-4" @bind-SelectedOption="Incomes.TransactionType">
+                        @foreach (TransactionCat type in Enum.GetValues(typeof(TransactionCat)))
+                        {
+                            <MudRadio Option="type" Color="Color.Warning">@type</MudRadio>
+                        }
+                    </MudRadioGroup>
+                    <MudSelect Class="my-4" @bind-Value="Incomes.Category" Label="Category">
+                        @foreach (IncomeCat cat in Enum.GetValues(typeof(IncomeCat)))
+                        {
+                            <MudSelectItem Value="cat">@cat</MudSelectItem>
+                        }
+                    </MudSelect>
+                    <MudDatePicker @bind-Date="Incomes.TransactionDate" Label="Date" ShowWeekNumbers="true"></MudDatePicker>
+                </MudCardContent>
+            </MudCard>
         </EditForm>
     </DialogContent>
     <DialogActions>
@@ -37,9 +46,10 @@
 
 @code {
     [CascadingParameter] MudDialogInstance? MudDialog { get; set; }
-
+    MudForm form;
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
     void Cancel() => MudDialog.Cancel();
+
 
     private IncomeDTO Incomes { get; set; } = new IncomeDTO();
 

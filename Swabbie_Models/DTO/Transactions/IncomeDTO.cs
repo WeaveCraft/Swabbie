@@ -8,7 +8,7 @@ namespace Swabbie_Models.DTO.Transactions
         public int Id { get; set; }
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? TransactionDate { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please Enter Name")]
         public string? Name { get; set; }
         [Required]
         public IncomeCat Category { get; set; }

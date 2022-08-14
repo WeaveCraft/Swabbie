@@ -15,7 +15,11 @@
 <MudSnackbarProvider/>
 <MudThemeProvider Theme="_currentTheme" />
 <MudDialogProvider FullWidth="true"
-                   MaxWidth="MaxWidth.ExtraSmall" />
+                   MaxWidth="MaxWidth.ExtraSmall"
+                   CloseOnEscapeKey="true"
+                   Position="DialogPosition.Center"
+/>
+
 
 @code {
     private MudTheme _currentTheme = new MudTheme();

@@ -37,6 +37,8 @@
 
 @code {
     [CascadingParameter] MudDialogInstance? MudDialog { get; set; }
+    [Parameter]
+    public int Id { get; set; }
 
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
     void Cancel() => MudDialog.Cancel();
@@ -44,9 +46,39 @@
     private ExpenseDTO Expenses { get; set; } = new ExpenseDTO();
 
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (Id == 0)
+            {
+                //create
+            }
+            else
+            {
+                //update
+                await LoadCategory();
+            }
+        }
+    }
+
+    private async Task LoadCategory()
+    {
+        Expenses = await _expenseRepository.Get(Id);
+        StateHasChanged();
+    }
+
     private async Task HandleSubmit()
     {
-        await _expenseRepository.Create(Expenses);
-        MudDialog.Close(DialogResult.Ok(true));
+        if (Expenses.Id == 0)
+        {
+            //create
+            await _expenseRepository.Create(Expenses);
+        }
+        else
+        {
+            //update
+            await _expenseRepository.Update(Expenses);
+        }
     }
 }
