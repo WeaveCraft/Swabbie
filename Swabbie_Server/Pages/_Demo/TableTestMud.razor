@@ -8,6 +8,11 @@
              StartedEditingItem="@StartedEditingItem" CancelledEditingItem="@CancelledEditingItem" CommittedItemChanges="@CommittedItemChanges">
 
     <Columns>
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.TransactionDate)">
+            <EditTemplate>
+                <MudDatePicker @bind-Date="context.Item.TransactionDate" ShowWeekNumbers="true" />
+            </EditTemplate>
+        </Column>
         <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Name)" />
         <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Amount)" />
         <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.CurrencyType)">
@@ -20,9 +25,27 @@
                 </MudRadioGroup>
             </EditTemplate>
         </Column>
-        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Category)" />
-        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.TransactionDate)" />
-
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.TransactionType)">
+            <EditTemplate>
+                <MudSelect Class="my-4" @bind-Value="context.Item.TransactionType">
+                    @foreach (TransactionCat transaction in Enum.GetValues(typeof(TransactionCat)))
+                    {
+                        <MudSelectItem Value="transaction" Color="Color.Warning">@transaction</MudSelectItem>
+                    }
+                </MudSelect>
+            </EditTemplate>
+        </Column>
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Category)">
+            <EditTemplate>
+                <MudSelect Class="my-4" @bind-Value="context.Item.Category">
+                    @foreach (ExpenseCat category in Enum.GetValues(typeof(ExpenseCat)))
+                    {
+                        <MudSelectItem Value="category" Color="Color.Warning">@category</MudSelectItem>
+                    }
+                </MudSelect>
+            </EditTemplate>
+        </Column>
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Description)" />
         <Column T="ExpenseDTO" Hidden="@(_isCellEditMode || _readOnly || _editTriggerRowClick)" CellClass="d-flex justify-end">
             <CellTemplate>
                 <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@context.Actions.StartEditingItem" />

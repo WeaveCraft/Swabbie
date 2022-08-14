@@ -1,89 +1,103 @@
 ﻿@page "/expense"
 @inject IExpenseRepository _expenseRepository
-@inject IJSRuntime _jsRuntime
-@inject IDialogService DialogService
 
-<MudPopoverProvider></MudPopoverProvider>
+<div class="d-flex flex-wrap mt-4">
+    <MudSwitch @bind-Checked="@_readOnly" Color="Color.Primary">Read Only</MudSwitch>
+    <div class="d-flex justify-start align-center">
+        <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Form</p>
+        <MudSwitch @bind-Checked="@_isCellEditMode">Cell</MudSwitch>
+    </div>
+    <div class="d-flex justify-start align-center">
+        <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Manual</p>
+        <MudSwitch @bind-Checked="@_editTriggerRowClick">On Row Click</MudSwitch>
+    </div>
+</div>
+<_UpsertDialogExpense />
+<MudDataGrid T="ExpenseDTO" Items="@Expenses.Take(5)" ReadOnly="@_readOnly" EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
+             Bordered="true" Dense="true" EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)"
+             StartedEditingItem="@StartedEditingItem" CancelledEditingItem="@CancelledEditingItem" CommittedItemChanges="@CommittedItemChanges">
 
-<_UpsertDialogExpense/>
-
-<MudDataGrid Elevation="5" Items="@Expenses" Filterable="true" Loading="false">
-    <Columns >
+    <Columns>
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.TransactionDate)">
+            <EditTemplate>
+                <MudDatePicker @bind-Date="context.Item.TransactionDate" ShowWeekNumbers="true" />
+            </EditTemplate>
+        </Column>
         <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Name)" />
         <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Amount)" />
-        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.CurrencyType)" />
-        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Category)" />
-        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.TransactionDate)" />
-                    <MudSpacer />
-        <MudTextField @bind-Value="searchString" Placeholder="Search for Expense..." Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
-    </Columns>
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.CurrencyType)">
+            <EditTemplate>
+                <MudRadioGroup Class="my-4" @bind-SelectedOption="context.Item.CurrencyType">
+                    @foreach (CurrencyCat currency in Enum.GetValues(typeof(CurrencyCat)))
+                    {
+                        <MudRadio Option="currency" Color="Color.Warning">@currency</MudRadio>
+                    }
+                </MudRadioGroup>
+            </EditTemplate>
+        </Column>
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.TransactionType)">
+            <EditTemplate>
+                <MudSelect Class="my-4" @bind-Value="context.Item.TransactionType">
+                    @foreach (TransactionCat transaction in Enum.GetValues(typeof(TransactionCat)))
+                    {
+                        <MudSelectItem Value="transaction" Color="Color.Warning">@transaction</MudSelectItem>
+                    }
+                </MudSelect>
+            </EditTemplate>
+        </Column>
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Category)">
+            <EditTemplate>
+                <MudSelect Class="my-4" @bind-Value="context.Item.Category">
+                    @foreach (ExpenseCat category in Enum.GetValues(typeof(ExpenseCat)))
+                    {
+                        <MudSelectItem Value="category" Color="Color.Warning">@category</MudSelectItem>
+                    }
+                </MudSelect>
+            </EditTemplate>
+        </Column>
+        <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.Description)" />
+        <Column T="ExpenseDTO" Hidden="@(_isCellEditMode || _readOnly || _editTriggerRowClick)" CellClass="d-flex justify-end">
+            <CellTemplate>
+                <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@context.Actions.StartEditingItem" />
+            <MudFab @onclick="()=>HandleDelete(context.Item.Id)" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
 
+            </CellTemplate>
+        </Column>
+    </Columns>
 </MudDataGrid>
 
 @code {
-    private IEnumerable<ExpenseDTO> Expenses { get; set; } = new List<ExpenseDTO>();
-    private int DeleteExpenseId { get; set; } = 0;
-    private string searchString = "";
+    [Parameter]
+    public int Id { get; set; }
+    private IEnumerable<ExpenseDTO> Expenses = new List<ExpenseDTO>();
+    private ExpenseDTO Expense = new ExpenseDTO();
+    private bool _readOnly;
+    private bool _isCellEditMode;
+    private bool _editTriggerRowClick;
+    private List<string> _events = new();
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await LoadExpenses();
-        }
-    }
-    private bool Search(ExpenseDTO expense)
-    {
-        if (expense.Name is not null && expense.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)
-            || expense.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
-
-    void Submit() => MudDialog.Close(DialogResult.Ok(true));
-    void Cancel() => MudDialog.Cancel();
-
-    private async Task LoadExpenses()
+    protected override async Task OnInitializedAsync()
     {
         Expenses = await _expenseRepository.GetAll();
-        StateHasChanged();
     }
 
+    void StartedEditingItem(ExpenseDTO item)
+    {
+        _expenseRepository.Update(item);
+    }
+
+    void CancelledEditingItem(ExpenseDTO item)
+    {
+        _expenseRepository.Update(item);
+    }
+
+    void CommittedItemChanges(ExpenseDTO item)
+    {
+        _expenseRepository.Update(item);
+    }
     private async Task HandleDelete(int id)
     {
         await _expenseRepository.Delete(id);
-        await LoadExpenses();
+        Expenses = await _expenseRepository.GetAll();
     }
-
 }
-@*
-<_UpsertDialogExpense />
-<MudTable Items="@Expenses" Elevation="25" Hover="true" Breakpoint="Breakpoint.Sm" RightAlignSmall="true" Filter="new Func<ExpenseDTO, bool>(Search)">
-    <HeaderContent>
-        <MudTh>Category</MudTh>
-        <MudTh>Name</MudTh>
-        <MudTh>Transaction Type</MudTh>
-        <MudTh>Transaction Date</MudTh>
-        <MudTh>Amount</MudTh>
-        <MudTh>Currency Type</MudTh>
-        <MudSpacer />
-        <MudTextField @bind-Value="searchString" Placeholder="Search for Expenses..." Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
-
-    </HeaderContent>
-    <RowTemplate>
-        <MudTd DataLabel="Category">@context.Category</MudTd>
-        <MudTd DataLabel="Name">@context.Name</MudTd>
-        <MudTd DataLabel="Transaction Type">@context.TransactionType</MudTd>
-        <MudTd DataLabel="Transaction Date">@context.TransactionDate</MudTd>
-        <MudTd DataLabel="Price">@context.Amount</MudTd>
-        <MudTd DataLabel="Currency Type">@context.CurrencyType</MudTd>
-        <MudTd DataLabel="">
-            <MudFab @onclick="()=>HandleDelete(context.Id)" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
-        </MudTd>
-
-    </RowTemplate>
-</MudTable>*@
