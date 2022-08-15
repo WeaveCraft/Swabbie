@@ -5,6 +5,7 @@ namespace Swabbie_Models.DTO.Transactions
 {
     public class SavingDTO
     {
+        public int Id { get; set; }
         public DateTime TransactionDate { get; set; }
         [Required]
         public SavingsCat Category { get; set; }
