@@ -18,6 +18,8 @@
              StartedEditingItem="@StartedEditingItem" CancelledEditingItem="@CancelledEditingItem" CommittedItemChanges="@CommittedItemChanges">
 
     <Columns>
+        <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
         <Column T="ExpenseDTO" Field="@nameof(ExpenseDTO.TransactionDate)">
             <EditTemplate>
                 <MudDatePicker @bind-Date="context.Item.TransactionDate" ShowWeekNumbers="true" />
@@ -58,7 +60,7 @@
         <Column T="ExpenseDTO" Hidden="@(_isCellEditMode || _readOnly || _editTriggerRowClick)" CellClass="d-flex justify-end">
             <CellTemplate>
                 <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@context.Actions.StartEditingItem" />
-            <MudIconButton @onclick="()=>HandleDelete(context.Item.Id)" Color="Color.Secondary" Size="Size.Small" Icon="@Icons.Outlined.Delete" />
+                <MudIconButton @onclick="()=>HandleDelete(context.Item.Id)" Color="Color.Secondary" Size="Size.Small" Icon="@Icons.Outlined.Delete" />
 
             </CellTemplate>
         </Column>
@@ -73,6 +75,7 @@
     private bool _readOnly;
     private bool _isCellEditMode;
     private bool _editTriggerRowClick;
+    private string _searchString;
     private List<string> _events = new();
 
     protected override async Task OnInitializedAsync()
@@ -99,4 +102,16 @@
         await _expenseRepository.Delete(id);
         Expenses = await _expenseRepository.GetAll();
     }
+
+    private Func<ExpenseDTO, bool> _quickFilter => x =>
+    {
+        if (string.IsNullOrWhiteSpace(_searchString))
+            return true;
+        if (x.Description.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        if ($"{x.Amount} {x.Category} {x.Description}".Contains(_searchString))
+            return true;
+
+        return false;
+    };
 }

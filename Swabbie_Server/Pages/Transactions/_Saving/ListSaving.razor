@@ -12,6 +12,7 @@
         <MudSwitch @bind-Checked="@_editTriggerRowClick">On Row Click</MudSwitch>
     </div>
 </div>
+<_UpsertDialogSaving />
 <MudDataGrid T="SavingDTO" Items="@Savings" ReadOnly="@_readOnly" EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
              Bordered="true" Dense="true" EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)"
              StartedEditingItem="@StartedEditingItem" CancelledEditingItem="@CancelledEditingItem" CommittedItemChanges="@CommittedItemChanges">
@@ -22,6 +23,16 @@
             </EditTemplate>
         </Column>
         <Column T="SavingDTO" Field="@nameof(SavingDTO.Amount)" />
+        <Column T="SavingDTO" Field="@nameof(SavingDTO.CurrencyType)">
+            <EditTemplate>
+                <MudRadioGroup Class="my-4" @bind-SelectedOption="context.Item.CurrencyType">
+                    @foreach (CurrencyCat currency in Enum.GetValues(typeof(CurrencyCat)))
+                    {
+                        <MudRadio Option="currency" Color="Color.Warning">@currency</MudRadio>
+                    }
+                </MudRadioGroup>
+            </EditTemplate>
+        </Column>
         <Column T="SavingDTO" Field="@nameof(SavingDTO.Category)">
             <EditTemplate>
                 <MudSelect Class="my-4" @bind-Value="context.Item.Category">

@@ -4,6 +4,8 @@
     <DialogContent>
         <EditForm Model="Expenses" OnValidSubmit="HandleSubmit">
             <DataAnnotationsValidator />
+            <MudCard>
+                <MudCardContent>
             <MudDatePicker Label="Date" @bind-Date="Expenses.TransactionDate" OpenTo="OpenTo.Month" ShowWeekNumbers="true" />
             <MudTextField @bind-Value="Expenses.Amount" T="decimal" Label="Price" Adornment="Adornment.Start"></MudTextField>
             <MudRadioGroup Class="my-4" @bind-SelectedOption="Expenses.CurrencyType">
@@ -25,6 +27,8 @@
                 }
             </MudSelect>
             <MudTextField @bind-Value="Expenses.Description" T="string" Label="Description" Variant="Variant.Outlined" Lines="3"></MudTextField>
+            </MudCardContent>
+            </MudCard>
         </EditForm>
     </DialogContent>
     <DialogActions>

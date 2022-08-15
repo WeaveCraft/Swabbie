@@ -1,0 +1,17 @@
+﻿@inject IDialogService DialogService
+@inject ISavingRepository _SavingRepository
+
+<MudButton @onclick="OpenDialog" Variant="Variant.Filled" Color="Color.Primary">
+    Add Saving
+</MudButton>
+
+
+@code {
+
+    private void OpenDialog()
+    {    
+        DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
+
+        DialogService.Show<_UpsertContentSaving>("New Saving", closeOnEscapeKey);
+    }
+}

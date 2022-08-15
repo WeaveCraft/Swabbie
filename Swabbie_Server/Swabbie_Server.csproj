@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Transactions\_Saving\Dialog\" />
     <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 

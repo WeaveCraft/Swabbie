@@ -1,0 +1,51 @@
+﻿@using System.ComponentModel.DataAnnotations
+@inject ISavingRepository _savingRepository
+
+
+<MudDialog>
+    <DialogContent>
+        <EditForm Model="Savings" OnValidSubmit="HandleSubmit">
+            <DataAnnotationsValidator />
+            <MudCard>
+                <MudCardContent>
+                    <MudTextField @bind-Value="Savings.Description" T="string" Label="Description"></MudTextField>
+                    <MudTextField @bind-Value="Savings.Amount" T="decimal" Label="Price"></MudTextField>
+                    <MudSelect Class="my-4" @bind-Value="Savings.CurrencyType" Label="Category">
+                        @foreach (CurrencyCat currency in Enum.GetValues(typeof(CurrencyCat)))
+                        {
+                            <MudSelectItem Value="currency">@currency</MudSelectItem>
+                        }
+                    </MudSelect>
+                    <MudSelect Class="my-4" @bind-Value="Savings.Category" Label="Category">
+                        @foreach (SavingsCat cat in Enum.GetValues(typeof(SavingsCat)))
+                        {
+                            <MudSelectItem Value="cat">@cat</MudSelectItem>
+                        }
+                    </MudSelect>
+                    <MudDatePicker @bind-Date="Savings.TransactionDate" Label="Date" ShowWeekNumbers="true"></MudDatePicker>
+                </MudCardContent>
+            </MudCard>
+        </EditForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Success" OnClick="HandleSubmit">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+
+
+@code {
+    [CascadingParameter] MudDialogInstance? MudDialog { get; set; }
+    MudForm form;
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+
+    private SavingDTO Savings { get; set; } = new SavingDTO();
+
+    private async Task HandleSubmit()
+    {
+        await _savingRepository.Create(Savings);
+        MudDialog.Close(DialogResult.Ok(true));
+    }
+}
