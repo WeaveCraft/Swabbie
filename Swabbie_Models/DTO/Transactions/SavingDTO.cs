@@ -1,18 +1,15 @@
 ﻿using Swabbie_DataAccess.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Swabbie_DataAccess.Transactions
+namespace Swabbie_Models.DTO.Transactions
 {
-    public class Saving
+    public class SavingDTO
     {
-        [Key]
-        public int Id { get; set; }
         public DateTime TransactionDate { get; set; }
         [Required]
         public SavingsCat Category { get; set; }
         [Required]
         public decimal Amount { get; set; }
         public string? Description { get; set; }
-        public DateTime CreatedDate { get; set; }
     }
 }

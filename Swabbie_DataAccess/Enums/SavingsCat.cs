@@ -5,14 +5,6 @@
         Monthly,
         Retirement,
         Investment,
-        Cryptocurrency,
-
-
-        Vehicle,
-        Clothes,
-        Utilities,
-        Travel,
-        Electronic,
-        Miscellanous
+        Cryptocurrency
     }
 }
