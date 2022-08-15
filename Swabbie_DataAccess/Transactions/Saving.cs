@@ -7,12 +7,16 @@ namespace Swabbie_DataAccess.Transactions
     {
         [Key]
         public int Id { get; set; }
-        public DateTime TransactionDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [Required]
+        public DateTime? TransactionDate { get; set; }
+        [Required]
+        public CurrencyCat CurrencyType { get; set; }
         [Required]
         public SavingsCat Category { get; set; }
         [Required]
         public decimal Amount { get; set; }
         public string? Description { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
     }
 }

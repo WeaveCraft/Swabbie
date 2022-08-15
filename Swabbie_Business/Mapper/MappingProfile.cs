@@ -10,6 +10,7 @@ namespace Swabbie_Business.Mapper
         {
             CreateMap<Income, IncomeDTO>().ReverseMap();
             CreateMap<Expense, ExpenseDTO>().ReverseMap();
+            CreateMap<Saving, SavingDTO>().ReverseMap();
         }
     }
 }

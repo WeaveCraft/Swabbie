@@ -63,6 +63,7 @@ namespace Swabbie_Business.Repository
                 objFromDb.CreatedDate = DateTime.UtcNow;
                 objFromDb.Amount = objDTO.Amount;
                 objFromDb.Category = objDTO.Category;
+                objFromDb.CurrencyType = objDTO.CurrencyType;
                 _db.Savings.Update(objFromDb);
                 await _db.SaveChangesAsync();
                 return _mapper.Map<Saving, SavingDTO>(objFromDb);

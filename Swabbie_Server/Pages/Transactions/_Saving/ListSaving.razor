@@ -1,7 +1,78 @@
-﻿@page "/savings"
+﻿@page "/saving"
+@inject ISavingRepository _savingRepository
 
-<h3>ListSaving</h3>
+<div class="d-flex flex-wrap mt-4">
+    <MudSwitch @bind-Checked="@_readOnly" Color="Color.Primary">Read Only</MudSwitch>
+    <div class="d-flex justify-start align-center">
+        <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Form</p>
+        <MudSwitch @bind-Checked="@_isCellEditMode">Cell</MudSwitch>
+    </div>
+    <div class="d-flex justify-start align-center">
+        <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Manual</p>
+        <MudSwitch @bind-Checked="@_editTriggerRowClick">On Row Click</MudSwitch>
+    </div>
+</div>
+<MudDataGrid T="SavingDTO" Items="@Savings" ReadOnly="@_readOnly" EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
+             Bordered="true" Dense="true" EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)"
+             StartedEditingItem="@StartedEditingItem" CancelledEditingItem="@CancelledEditingItem" CommittedItemChanges="@CommittedItemChanges">
+    <Columns>
+        <Column T="SavingDTO" Field="@nameof(SavingDTO.TransactionDate)">
+            <EditTemplate>
+                <MudDatePicker @bind-Date="context.Item.TransactionDate" ShowWeekNumbers="true" />
+            </EditTemplate>
+        </Column>
+        <Column T="SavingDTO" Field="@nameof(SavingDTO.Amount)" />
+        <Column T="SavingDTO" Field="@nameof(SavingDTO.Category)">
+            <EditTemplate>
+                <MudSelect Class="my-4" @bind-Value="context.Item.Category">
+                    @foreach (SavingsCat category in Enum.GetValues(typeof(SavingsCat)))
+                    {
+                        <MudSelectItem Value="category" Color="Color.Warning">@category</MudSelectItem>
+                    }
+                </MudSelect>
+            </EditTemplate>
+        </Column>
+        <Column T="SavingDTO" Field="@nameof(SavingDTO.Description)" />
+        <Column T="SavingDTO" Hidden="@(_isCellEditMode || _readOnly || _editTriggerRowClick)" CellClass="d-flex justify-end">
+            <CellTemplate>
+                <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@context.Actions.StartEditingItem" />
+            <MudIconButton @onclick="()=>HandleDelete(context.Item.Id)" Color="Color.Secondary" Size="Size.Small" Icon="@Icons.Outlined.Delete" />
+            </CellTemplate>
+        </Column>
+    </Columns>
+</MudDataGrid>
 
 @code {
+    [Parameter]
+    public int Id { get; set; }
+    private IEnumerable<SavingDTO> Savings = new List<SavingDTO>();
+    private bool _readOnly;
+    private bool _isCellEditMode;
+    private bool _editTriggerRowClick;
+    private List<string> _events = new();
 
+    protected override async Task OnInitializedAsync()
+    {
+        Savings = await _savingRepository.GetAll();
+    }
+
+    void StartedEditingItem(SavingDTO item)
+    {
+        _savingRepository.Update(item);
+    }
+
+    void CancelledEditingItem(SavingDTO item)
+    {
+        _savingRepository.Update(item);
+    }
+
+    void CommittedItemChanges(SavingDTO item)
+    {
+        _savingRepository.Update(item);
+    }
+    private async Task HandleDelete(int id)
+    {
+        await _savingRepository.Delete(id);
+        Savings = await _savingRepository.GetAll();
+    }
 }
