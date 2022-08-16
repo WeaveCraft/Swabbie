@@ -2,24 +2,10 @@
 @inject IExpenseRepository _expenseRepository
 
 
-<MudPaper Class="d-flex align-start flex-grow-1 gap-4" Elevation="0">
-    <MudPaper Class="align-self-end py-4 flex-1">
-        <div class="d-flex flex-wrap mt-4">
-            <MudSwitch @bind-Checked="@_readOnly" Color="Color.Primary">Read Only</MudSwitch>
-            <div class="d-flex justify-start align-center">
-                <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Form</p>
-                <MudSwitch @bind-Checked="@_isCellEditMode">Cell</MudSwitch>
-            </div>
-            <div class="d-flex justify-start align-center">
-                <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Manual</p>
-                <MudSwitch @bind-Checked="@_editTriggerRowClick">On Row Click</MudSwitch>
-            </div>
-        </div>
-    </MudPaper>
-</MudPaper>
+
 
 <MudPaper Class="d-flex align-start flex-grow-1 gap-4" Elevation="0">
-    <MudPaper Class="py-16 flex-1">
+    <div class="d-inline pa-2">
         <_UpsertDialogExpense />
         <MudDataGrid T="ExpenseDTO" Items="@Expenses.Take(5)" ReadOnly="@_readOnly" EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
                      Bordered="true" Dense="true" EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)"
@@ -74,7 +60,23 @@
                 </Column>
             </Columns>
         </MudDataGrid>
-    </MudPaper>
+    </div>
+</MudPaper>
+
+<MudPaper Class="d-flex align-start flex-grow-1 gap-4" Elevation="0">
+    <div class="d-inline pa-2">
+        <div class="d-flex flex-wrap mt-4">
+            <MudSwitch @bind-Checked="@_readOnly" Color="Color.Primary">Read Only</MudSwitch>
+            <div class="d-flex justify-start align-center">
+                <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Form</p>
+                <MudSwitch @bind-Checked="@_isCellEditMode">Cell</MudSwitch>
+            </div>
+            <div class="d-flex justify-start align-center">
+                <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Manual</p>
+                <MudSwitch @bind-Checked="@_editTriggerRowClick">On Row Click</MudSwitch>
+            </div>
+        </div>
+    </div>
 </MudPaper>
 
 @code {
